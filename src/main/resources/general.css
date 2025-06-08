@@ -1,0 +1,61 @@
+#root {
+    -fx-background-color: black;
+}
+
+#prompt {
+    -fx-background-color: rgba(0, 0, 0, 0.5);
+}
+
+.message-box {
+    -fx-background-color: pink;
+    -fx-pref-width: 273;
+    -fx-pref-height: 153;
+    -fx-translate-x: 546;
+    -fx-translate-y: 306;
+}
+
+.message-box .label {
+    /* -fx-background-color: lightskyblue; */
+    -fx-font-size: 16px;
+    -fx-pref-width: 216;
+    -fx-pref-height: 68;
+    -fx-translate-x: 28;
+    /* -fx-translate-y: 20; defined later in yesno-box and input-box */
+}
+
+.message-box .text-field {
+    -fx-translate-x: 28;
+    -fx-translate-y: 58;
+    -fx-pref-width: 216;
+}
+
+.message-box .button {
+    -fx-pref-width: 45;
+    -fx-pref-height: 30;
+    -fx-translate-y: 96;
+}
+
+.message-box .yes-button {
+    -fx-translate-x: 68;
+}
+
+.message-box .no-button {
+    -fx-translate-x: 160;
+}
+
+.yesno-box .label {
+    -fx-translate-y: 20;
+}
+
+.input-box .label {
+    -fx-translate-y: 10;
+    -fx-pref-height: 48;
+}
+
+.clipped-button {
+    -fx-background-color: transparent;
+    -fx-background-insets: 0;
+    -fx-padding: 0;
+    -fx-content-display: graphic-only;
+    -fx-border-color: red;
+}

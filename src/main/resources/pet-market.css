@@ -1,0 +1,216 @@
+.label {
+    -fx-text-fill: #4d3615;
+}
+
+#buy-dialog {
+    -fx-background-color: #ffe0b2;
+    -fx-pref-width: 1002px;
+    -fx-pref-height: 585px;
+    -fx-translate-x: 183;
+    -fx-translate-y: 91.5;
+}
+
+#scroll-pane {
+    -fx-background-color: transparent;
+    -fx-pref-width: 217px;
+    -fx-pref-height: 411px;
+    -fx-translate-x: 123;
+    -fx-translate-y: 74.5;
+}
+
+#scroll-pane .viewport {
+    -fx-background-color: transparent;
+}
+
+#BuyRow {
+    -fx-background-color: #ffeaa4;
+    -fx-pref-width: 217;
+    -fx-pref-height: 76.8;
+}
+
+#RowButton {
+    -fx-font-size: 16px;
+    -fx-text-fill: #4d3615;
+    -fx-background-color: derive(#e0b84afb, 0%);
+    -fx-pref-width: 200;
+    -fx-pref-height: 70.8;
+    -fx-background-radius: 5;
+    /* 添加圆角背景 */
+    -fx-border-radius: 5;
+    /* 圆角边框 */
+    -fx-border-width: 0;
+    /* 默认无边框 */
+    -fx-cursor: hand;
+    /* 鼠标悬停时显示手型指针 */
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 5, 0, 0, 1);
+    /* 轻微阴影效果 */
+}
+
+/* 鼠标悬停状态 */
+#RowButton:hover {
+    -fx-background-color: derive(#e0b84afb, -10%);
+    /* 颜色变深20% */
+}
+
+/* 鼠标按下状态 */
+#RowButton:focused {
+    -fx-border-color: #3a7bd5;
+    /* 蓝色边框 */
+    -fx-border-width: 2;
+    /* 边框宽度 */
+    -fx-border-radius: 5;
+    /* 圆角边框 */
+    -fx-background-color: derive(#e0b84afb, -10%);
+    /* 颜色更深 */
+    -fx-effect: innershadow(gaussian, rgba(0, 0, 0, 0.2), 5, 0, 0, 1);
+    /* 内阴影效果 */
+}
+
+
+#BuyImage {
+    -fx-translate-x: 397px;
+    -fx-translate-y: 74.5px;
+    -fx-pref-width: 200px;
+    -fx-pref-height: 200px;
+    -fx-border-color: red;
+    -fx-border-width: 2px;
+}
+
+#priceLabel {
+    -fx-translate-x: 411.5px;
+    -fx-translate-y: 362.5px;
+    -fx-pref-width: 170px;
+    -fx-pref-height: 40px;
+    -fx-font-size: 18px;
+    -fx-background-color: #f8f8f8;
+    -fx-border-color: #ddd;
+    -fx-border-width: 1px;
+    -fx-alignment: center;
+}
+
+#moneyLabel {
+    -fx-translate-x: 123px;
+    -fx-translate-y: 19px;
+    -fx-pref-width: 217px;
+    -fx-pref-height: 48px;
+    -fx-font-size: 18px;
+    -fx-background-color: #f8f8f8;
+    -fx-border-color: #ddd;
+    -fx-border-width: 1px;
+    -fx-alignment: center;
+    -fx-text-fill: #4d3615;
+}
+
+#nameLabel {
+    -fx-translate-x: 411.5px;
+    -fx-translate-y: 305px;
+    -fx-pref-width: 170px;
+    -fx-pref-height: 40px;
+    -fx-font-size: 18px;
+    -fx-background-color: #f8f8f8;
+    -fx-border-color: #ddd;
+    -fx-border-width: 1px;
+    -fx-alignment: center;
+}
+
+#BuyButton {
+    -fx-translate-x: 434px;
+    -fx-translate-y: 419px;
+    -fx-pref-width: 120px;
+    -fx-pref-height: 60px;
+}
+
+#introduceLabel {
+    -fx-translate-x: 647px;
+    -fx-translate-y: 74.5px;
+    -fx-pref-width: 236px;
+    -fx-pref-height: 411px;
+    -fx-font-size: 18px;
+    -fx-background-color: #f8f8f8;
+    -fx-border-color: #ddd;
+    -fx-border-width: 1px;
+    -fx-alignment: center;
+}
+
+#exitButton {
+    -fx-translate-x: 949px;
+    -fx-translate-y: 8.5px;
+    -fx-pref-width: 30px;
+    -fx-pref-height: 30px;
+}
+
+#marketBtn1 {
+    -fx-translate-x: 363.5px;
+    -fx-translate-y: 100px;
+    -fx-pref-width: 200px;
+    -fx-pref-height: 200px;
+}
+
+#marketBtn2 {
+    -fx-translate-x: 804.5px;
+    -fx-translate-y: 100px;
+    -fx-pref-width: 200px;
+    -fx-pref-height: 200px;
+}
+
+#marketBtn3 {
+    -fx-translate-x: 163.5px;
+    -fx-translate-y: 445px;
+    -fx-pref-width: 200px;
+    -fx-pref-height: 200px;
+}
+
+#marketBtn4 {
+    -fx-translate-x: 1004.5px;
+    -fx-translate-y: 445px;
+    -fx-pref-width: 200px;
+    -fx-pref-height: 200px;
+}
+
+#marketBtn5 {
+    -fx-translate-x: 550.5px;
+    -fx-translate-y: 488px;
+    -fx-pref-width: 235px;
+    -fx-pref-height: 235px;
+}
+
+
+
+/* 设置垂直滚动条（矩形、橘黄色） */
+.scroll-pane .scroll-bar:vertical {
+    -fx-background-color: transparent;
+    /* 背景透明 */
+}
+
+/* 垂直滚动条的轨道（矩形背景） */
+.scroll-pane .scroll-bar:vertical .track {
+    -fx-background-color: #ffe0b2;
+    /* 浅橘色轨道 */
+    -fx-border-color: transparent;
+    -fx-background-radius: 0;
+    /* 矩形（无圆角） */
+}
+
+/* 垂直滚动条的滑块（橘黄色矩形） */
+.scroll-pane .scroll-bar:vertical .thumb {
+    -fx-background-color: #ff9800;
+    /* 橘黄色 */
+    -fx-background-radius: 0;
+    /* 矩形（无圆角） */
+}
+
+/* 鼠标悬停时滑块变深橘色 */
+.scroll-pane .scroll-bar:vertical .thumb:hover {
+    -fx-background-color: #fb8c00;
+}
+
+/* 鼠标按下时滑块变暗橘色 */
+.scroll-pane .scroll-bar:vertical .thumb:pressed {
+    -fx-background-color: #f57c00;
+}
+
+/* 隐藏水平滚动条（可选） */
+.scroll-pane .scroll-bar:horizontal {
+    -fx-opacity: 0;
+    -fx-pref-height: 0;
+}

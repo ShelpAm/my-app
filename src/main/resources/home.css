@@ -1,0 +1,10 @@
+#home {
+    -fx-background-image: url('home.png');
+    -fx-background-size: cover;
+}
+
+.pet {
+    -fx-background-color: transparent;
+    -fx-pref-width: 160;
+    -fx-pref-height: 160;
+}

@@ -1,0 +1,90 @@
+#greet {
+    -fx-background-image: url('greet.png');
+    -fx-background-size: cover;
+}
+
+#load-dialog {
+    -fx-background-color: pink;
+    -fx-pref-width: 683;
+    -fx-pref-height: 384;
+    -fx-translate-x: 341.5;
+    -fx-translate-y: 96;
+    -fx-fit-to-width: true;
+    -fx-padding: 8px;
+}
+
+#load-dialog .vbox {
+    -fx-pref-width: 100%;
+    -fx-pref-height: 100%;
+}
+
+.archive-row {
+    -fx-background-color: #ffeaa4;
+    -fx-pref-width: 683;
+    -fx-pref-height: 76.8;
+}
+
+.archive-row .load-button {
+    -fx-font-size: 16px;
+    -fx-text-fill: #4d3615;
+    -fx-background-color: derive(#f8d677, 0%);
+    -fx-pref-width: 576.2;
+    -fx-pref-height: 76.8;
+}
+
+.archive-row .load-button:focused {
+    -fx-background-color: derive(#f8d677, 20%);
+}
+
+.archive-row .remove-button {
+    -fx-background-image: url('remove.png');
+    -fx-background-size: cover;
+    -fx-background-color: derive(#f8d677, 0%);
+    -fx-pref-width: 74.8;
+    -fx-pref-height: 74.8;
+}
+
+.greeting-button {
+    -fx-background-color: transparent;
+    -fx-pref-width: 290;
+    -fx-pref-height: 100;
+    -fx-translate-y: 620;
+}
+
+#new-button {
+    -fx-translate-x: 188;
+}
+
+#load-button {
+    -fx-translate-x: 566;
+}
+
+#exit-button {
+    -fx-translate-x: 944;
+}
+
+.scroll-pane {
+    -fx-background-color: transparent;
+}
+
+.scroll-pane .viewport {
+    -fx-background-color: transparent;
+}
+
+.scroll-bar:vertical {
+    -fx-background-color: transparent;
+}
+
+.scroll-bar:vertical .track {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+
+.scroll-bar:vertical .thumb {
+    -fx-background-color: derive(black, 90%);
+    -fx-background-radius: 5em;
+}
+
+.scroll-bar:vertical .thumb:hover {
+    -fx-background-color: derive(black, 80%);
+}
