@@ -2,20 +2,30 @@
     -fx-text-fill: #4d3615;
 }
 
+#market-pane{
+    -fx-pref-width: 1408px;
+    -fx-pref-height: 792px;
+    -fx-background-image: url("/market.png");
+    -fx-background-size: cover;
+    -fx-background-color: transparent;
+}
+
 #buy-dialog {
     -fx-background-color: #ffe0b2;
-    -fx-pref-width: 1002px;
-    -fx-pref-height: 585px;
-    -fx-translate-x: 183;
-    -fx-translate-y: 91.5;
+    -fx-background-image: url("/buy-image.png");
+    -fx-pref-width: 768px;
+    -fx-pref-height: 576px;
+    -fx-translate-x: 300;
+    -fx-translate-y: 115.5;
+    -fx-background-color: transparent;
 }
 
 #scroll-pane {
     -fx-background-color: transparent;
-    -fx-pref-width: 217px;
-    -fx-pref-height: 411px;
-    -fx-translate-x: 123;
-    -fx-translate-y: 74.5;
+    -fx-pref-width: 154.5px;
+    -fx-pref-height: 363px;
+    -fx-translate-x: 102;
+    -fx-translate-y: 125;
 }
 
 #scroll-pane .viewport {
@@ -23,17 +33,17 @@
 }
 
 #BuyRow {
-    -fx-background-color: #ffeaa4;
-    -fx-pref-width: 217;
-    -fx-pref-height: 76.8;
+    -fx-pref-width: 145;
+    -fx-pref-height: 36.8;
+    -fx-background-color: #d2dfc3;
 }
 
 #RowButton {
     -fx-font-size: 16px;
     -fx-text-fill: #4d3615;
     -fx-background-color: derive(#e0b84afb, 0%);
-    -fx-pref-width: 200;
-    -fx-pref-height: 70.8;
+    -fx-pref-width: 145;
+    -fx-pref-height: 30.8;
     -fx-background-radius: 5;
     /* 添加圆角背景 */
     -fx-border-radius: 5;
@@ -68,92 +78,87 @@
 
 
 #BuyImage {
-    -fx-translate-x: 397px;
-    -fx-translate-y: 74.5px;
-    -fx-pref-width: 200px;
-    -fx-pref-height: 200px;
-    -fx-border-color: red;
-    -fx-border-width: 2px;
+    -fx-translate-x: 306px;
+    -fx-translate-y: 125.5px;
+    -fx-pref-width: 150px;
+    -fx-pref-height: 150px;
+    -fx-background-color: transparent;
 }
 
 #priceLabel {
-    -fx-translate-x: 411.5px;
-    -fx-translate-y: 362.5px;
-    -fx-pref-width: 170px;
-    -fx-pref-height: 40px;
-    -fx-font-size: 18px;
-    -fx-background-color: #f8f8f8;
-    -fx-border-color: #ddd;
-    -fx-border-width: 1px;
+    -fx-translate-x: 301.5px;
+    -fx-translate-y: 371px;
+    -fx-pref-width: 159px;
+    -fx-pref-height: 37px;
+    -fx-font-size: 20px;
     -fx-alignment: center;
+    -fx-background-color: transparent;
 }
 
 #moneyLabel {
-    -fx-translate-x: 123px;
-    -fx-translate-y: 19px;
-    -fx-pref-width: 217px;
-    -fx-pref-height: 48px;
-    -fx-font-size: 18px;
-    -fx-background-color: #f8f8f8;
-    -fx-border-color: #ddd;
-    -fx-border-width: 1px;
+    -fx-translate-x: 554px;
+    -fx-translate-y: 16px;
+    -fx-pref-width: 129.5px;
+    -fx-pref-height: 30px;
+    -fx-font-size: 20px;
     -fx-alignment: center;
     -fx-text-fill: #4d3615;
+    -fx-background-color: transparent;
 }
 
 #nameLabel {
-    -fx-translate-x: 411.5px;
-    -fx-translate-y: 305px;
-    -fx-pref-width: 170px;
-    -fx-pref-height: 40px;
-    -fx-font-size: 18px;
-    -fx-background-color: #f8f8f8;
-    -fx-border-color: #ddd;
-    -fx-border-width: 1px;
+    -fx-translate-x: 301.5px;
+    -fx-translate-y: 319px;
+    -fx-pref-width: 159px;
+    -fx-pref-height: 37px;
+    -fx-font-size: 20px;
     -fx-alignment: center;
+    -fx-background-color: transparent;
 }
 
 #BuyButton {
-    -fx-translate-x: 434px;
-    -fx-translate-y: 419px;
-    -fx-pref-width: 120px;
-    -fx-pref-height: 60px;
+    -fx-translate-x: 292.5px;
+    -fx-translate-y: 431px;
+    -fx-pref-width: 183px;
+    -fx-pref-height: 61px;
+    -fx-background-color: transparent;
 }
 
 #introduceLabel {
-    -fx-translate-x: 647px;
-    -fx-translate-y: 74.5px;
-    -fx-pref-width: 236px;
-    -fx-pref-height: 411px;
+    -fx-translate-x: 508.5px;
+    -fx-translate-y: 125px;
+    -fx-pref-width: 154.5px;
+    -fx-pref-height: 363px;
     -fx-font-size: 18px;
-    -fx-background-color: #f8f8f8;
-    -fx-border-color: #ddd;
-    -fx-border-width: 1px;
     -fx-alignment: center;
 }
 
 #exitButton {
-    -fx-translate-x: 949px;
-    -fx-translate-y: 8.5px;
-    -fx-pref-width: 30px;
-    -fx-pref-height: 30px;
+    -fx-translate-x: 705px;
+    -fx-translate-y: 9px;
+    -fx-pref-width: 50px;
+    -fx-pref-height: 50px;
+    -fx-background-color: transparent;
 }
 
 #marketBtn1 {
-    -fx-translate-x: 363.5px;
-    -fx-translate-y: 100px;
-    -fx-pref-width: 200px;
-    -fx-pref-height: 200px;
+    -fx-background-color: transparent;
+    -fx-translate-x: 14px;
+    -fx-translate-y: 316px;
+    -fx-pref-width: 504px;
+    -fx-pref-height: 315px;
 }
 
 #marketBtn2 {
-    -fx-translate-x: 804.5px;
-    -fx-translate-y: 100px;
-    -fx-pref-width: 200px;
-    -fx-pref-height: 200px;
+    -fx-background-color: transparent;
+    -fx-translate-x: 896px;
+    -fx-translate-y: 316px;
+    -fx-pref-width: 504px;
+    -fx-pref-height: 315px;
 }
 
 #marketBtn3 {
+    -fx-background-color: transparent;
     -fx-translate-x: 163.5px;
     -fx-translate-y: 445px;
     -fx-pref-width: 200px;
@@ -161,6 +166,7 @@
 }
 
 #marketBtn4 {
+    -fx-background-color: transparent;
     -fx-translate-x: 1004.5px;
     -fx-translate-y: 445px;
     -fx-pref-width: 200px;
@@ -168,10 +174,11 @@
 }
 
 #marketBtn5 {
-    -fx-translate-x: 550.5px;
-    -fx-translate-y: 488px;
-    -fx-pref-width: 235px;
-    -fx-pref-height: 235px;
+    -fx-background-color: transparent;
+    -fx-translate-x: 556px;
+    -fx-translate-y: 673px;
+    -fx-pref-width: 288px;
+    -fx-pref-height: 96px;
 }
 
 
