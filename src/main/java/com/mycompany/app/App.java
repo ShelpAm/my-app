@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.function.Consumer;
 
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.collections.MapChangeListener;
 import javafx.geometry.Pos;
 import javafx.scene.Cursor;
@@ -31,7 +32,7 @@ public class App extends Application {
     private Save currentSave;
 
     SceneManager sm;
-    // Game game = new Game();
+    Game game = new Game();
 
     // Create tabs for the main interface
     // Tab marketTab = new Tab("宠物市场");
@@ -52,11 +53,15 @@ public class App extends Application {
 
         sm = new SceneManager(stage);
         sm.enter(SceneType.Greet);
-        // sm.enter(SceneType.PetMarket);
-        // sm.enter(SceneType.MainStreet);
         stage.setScene(sm.getScene());
         stage.show();
-        // game.init();
+        Game.init();
+    }
+
+    public static void exit() {
+        Game.terminate();
+        // TODO: save Save
+        Platform.exit();
     }
 
     // private void yesNoBox(Pane parent, String text, Consumer<Void> yesCallback) {

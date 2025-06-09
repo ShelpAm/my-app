@@ -1,15 +1,20 @@
 package com.mycompany.app;
 
-import java.util.List;
-import java.util.Timer;
-import java.util.TimerTask;
-import java.util.ArrayList;
+import java.util.*;
+import java.util.concurrent.*;
 
 public class Game {
-    Timer timer = new Timer();
-    int day = 0;
+    static ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(4);
+    static List<Thread> threads = new ArrayList<Thread>();
+    static int day = 0;
+    static int hour = 0;
+
+    public static int getHour() {
+        return hour;
+    }
+
     List<Pet> adoptedPets = new ArrayList<>();
-    final double timeRate = 200;
+    static final double timeRate = 200;
 
     public Game(String saveFile) {
         // Process saving file
@@ -19,11 +24,36 @@ public class Game {
     public Game() {
     }
 
-    public void init() {
-        timer.scheduleAtFixedRate(new TimerTask() {
+    public static void init() {
+        // Hourly
+        scheduler.scheduleAtFixedRate(new TimerTask() {
             public void run() {
-                ++day;
+                ++hour;
+                if (hour == 24) {
+                    hour = 0;
+                    ++day;
+                }
+                System.out.println("[info] time changed to day " + day + "  hour " + hour);
 
+                Thread thread = new Thread(() -> {
+                    WeatherService ws = new WeatherService("05719e482b5f28e12b521f6e618635c4");
+                    try {
+                        WeatherType weather = ws.getCurrentWeather("Nanchang");
+                        Home.getInstance().updateWeather(weather);
+                        System.out.println("[info] weather updated to " + weather);
+                    } catch (InterruptedException e) {
+                        return;
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                });
+                thread.start();
+                threads.add(thread);
+            }
+        }, 0, (long) (60 * 1000 / timeRate), TimeUnit.MILLISECONDS);
+
+        scheduler.scheduleAtFixedRate(new TimerTask() {
+            public void run() {
                 var homePets = Home.getInstance().getPets();
                 for (Pet pet : homePets) {
                     if (pet.getHunger() < 60) {
@@ -42,13 +72,12 @@ public class Game {
                             }
                         };
                         re.run();
-
                     }
                 }
             }
-        }, 0, (long) (24 * 60 * 1000 / timeRate));
+        }, 0, (long) (24 * 60 * 1000 / timeRate), TimeUnit.MILLISECONDS);
 
-        timer.scheduleAtFixedRate(new TimerTask() {
+        scheduler.scheduleAtFixedRate(new TimerTask() {
             public void run() {
                 var homePets = Home.getInstance().getPets();
                 for (Pet pet : homePets) {
@@ -61,13 +90,26 @@ public class Game {
                     }
                 }
             }
-        }, 0, (long) (48 * 60 * 1000 / timeRate));
+        }, 0, (long) (48 * 60 * 1000 / timeRate), TimeUnit.MILLISECONDS);
 
-        timer.scheduleAtFixedRate(new TimerTask() {
+        scheduler.scheduleAtFixedRate(new TimerTask() {
             public void run() {
-                System.out.println("Test timer, should be triggered every 5s");
+                System.out.println("[debug] test timer, should be triggered every 1s");
             }
-        }, 0, (long) (5 * 1000));
+        }, 0, 1, TimeUnit.SECONDS);
+
+        scheduler.scheduleAtFixedRate(new TimerTask() {
+            public void run() {
+                System.out.println("[debug] test timer, should be triggered every 5s");
+            }
+        }, 0, 5, TimeUnit.SECONDS);
+    }
+
+    public static void terminate() {
+        for (var t : threads) {
+            t.interrupt();
+        }
+        scheduler.shutdown();
     }
 
     public void save(String saveFile) {

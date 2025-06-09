@@ -1,11 +1,7 @@
 package com.mycompany.app;
 
-import javafx.util.Duration;
-
 import java.util.ArrayList;
 
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
 import javafx.geometry.Point2D;
 import javafx.scene.control.*;
 import javafx.scene.layout.Pane;
@@ -14,9 +10,19 @@ public class HomeBuilder {
 
     private final SceneManager sceneManager;
     private Button birdButton;
+    private Pane weatherContainer;
+
+    public Pane getWeatherContainer() {
+        return weatherContainer;
+    }
+
+    public void setWeatherContainer(Pane weatherContainer) {
+        this.weatherContainer = weatherContainer;
+    }
 
     public HomeBuilder(SceneManager sm) {
         this.sceneManager = sm;
+        Home.getInstance().setHomeBuilder(this);
     }
 
     public Pane makeHome() {
@@ -30,9 +36,18 @@ public class HomeBuilder {
             mousePos[0] = new Point2D(e.getSceneX(), e.getSceneY());
         });
 
-        ClippedImageButton door = new ClippedImageButton("/door.png");
-        door.setOnAction(e -> sceneManager.enter(SceneType.MainStreet));
-        home.getChildren().add(door);
+        { // Backgrounds
+            weatherContainer = new Pane();
+            weatherContainer.setPrefSize(sceneManager.getScene().getWidth(),
+                    sceneManager.getScene().getHeight());
+            home.getChildren().add(weatherContainer);
+        }
+
+        {
+            ClippedImageButton door = new ClippedImageButton("/door.png");
+            door.setOnAction(e -> sceneManager.enter(SceneType.MainStreet));
+            home.getChildren().add(door);
+        }
 
         { // Pets
             ArrayList<Button> blanket = new ArrayList<>();
@@ -92,25 +107,7 @@ public class HomeBuilder {
 
         }
 
-        Timeline refresher = new Timeline(
-                new KeyFrame(Duration.minutes(5), e -> {
-                    WeatherService ws = new WeatherService("05719e482b5f28e12b521f6e618635c4");
-                    try {
-                        updateWeather(ws.getCurrentWeather("Nanchang"));
-                    } catch (Exception ex) {
-                    }
-                }));
-        refresher.setCycleCount(Timeline.INDEFINITE);
-        refresher.play();
-
         return home;
-    }
-
-    private void updateWeather(WeatherType type) {
-        for (Pet pet : Home.getInstance().getPets()) {
-            pet.setMood(pet.getMood() - pet.changeMood(type));
-        }
-
     }
 
     private void updateBird(Bird bird, Pane home) {

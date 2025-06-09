@@ -4,7 +4,6 @@ import javafx.animation.Interpolator;
 import javafx.animation.ParallelTransition;
 import javafx.animation.RotateTransition;
 import javafx.animation.TranslateTransition;
-import javafx.application.Platform;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.scene.control.Button;
@@ -96,8 +95,7 @@ public class UIBuilder {
             exitBtn.setLayoutX(60);
             exitBtn.setLayoutY(10);
             exitBtn.setOnAction(e -> {
-                // TODO: save Save
-                Platform.exit();
+                App.exit();
             });
             drawer.getChildren().addAll(saveBtn, exitBtn);
 

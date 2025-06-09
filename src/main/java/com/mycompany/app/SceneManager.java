@@ -231,8 +231,7 @@ public class SceneManager {
         exitButton.getStyleClass().add("greeting-button");
         exitButton.setId("exit-button");
         exitButton.setOnAction(e -> {
-            stage.close();
-            Platform.exit();
+            App.exit();
         });
 
         root.getChildren().addAll(loadDialog, newButton, loadButton, exitButton);
@@ -251,7 +250,8 @@ public class SceneManager {
     }
 
     private Pane makeHospital() {
-        return HospitalBuilder.makeHospital();
+        var hospitalBuilder = new HospitalBuilder(this);
+        return hospitalBuilder.makeHospital();
     }
 
     private Pane makeHome() {

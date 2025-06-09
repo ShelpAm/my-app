@@ -2,8 +2,6 @@ package com.mycompany.app;
 
 import javafx.animation.*;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
@@ -26,8 +24,14 @@ public class HospitalBuilder {
     private static Button treatmentButton;
     private static ImageView petImageView;
     private static Button sceneSwitchButton; // 新增场景切换按钮
+    private final SceneManager sceneManager;
+    // private Button birdButton;
 
-    public static Pane makeHospital() {
+    public HospitalBuilder(SceneManager sm) {
+        this.sceneManager = sm;
+    }
+
+    public Pane makeHospital() {
         Pane root = new Pane();
 
         // 加载背景图片
@@ -50,9 +54,9 @@ public class HospitalBuilder {
 
         // 创建透明治疗按钮
         treatmentButton = new Button();
-        treatmentButton.setPrefSize(150, 140);
-        treatmentButton.setLayoutX(200);
-        treatmentButton.setLayoutY(180);
+        treatmentButton.setPrefSize(230, 130);
+        treatmentButton.setLayoutX(350);
+        treatmentButton.setLayoutY(300);
         treatmentButton.setStyle("-fx-background-color: transparent;");
 
         // 创建红色进度条
@@ -61,14 +65,14 @@ public class HospitalBuilder {
         progressBar.setPrefHeight(25);
         progressBar.setVisible(false);
         progressBar.setLayoutX(250);
-        progressBar.setLayoutY(200);
+        progressBar.setLayoutY(230);
 
         // 进度条标签
         progressBarLabel = new Label("");
         progressBarLabel.setFont(Font.font("Arial", 16));
         progressBarLabel.setPadding(new Insets(0, 0, 5, 0));
-        progressBarLabel.setLayoutX(380);
-        progressBarLabel.setLayoutY(170);
+        progressBarLabel.setLayoutX(360);
+        progressBarLabel.setLayoutY(200);
         progressBarLabel.setAlignment(Pos.CENTER);
 
         // 添加医院标题
@@ -76,7 +80,7 @@ public class HospitalBuilder {
         title.setFont(Font.font("Arial", 36));
         title.setStyle("-fx-text-fill: #2c3e50; -fx-font-weight: bold; " +
                 "-fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 5, 0.5, 0, 1);");
-        title.setLayoutX(330);
+        title.setLayoutX(600);
         title.setLayoutY(80);
 
         // 添加提示标签
@@ -85,15 +89,15 @@ public class HospitalBuilder {
         hint.setStyle("-fx-text-fill: #2c3e50; -fx-font-weight: bold; " +
                 "-fx-background-color: rgba(255,255,255,0.7); " +
                 "-fx-padding: 5px; -fx-background-radius: 5px;");
-        hint.setLayoutX(280);
+        hint.setLayoutX(550);
         hint.setLayoutY(130);
 
         // 创建宠物图片视图
         petImageView = new ImageView();
         petImageView.setFitWidth(100);
         petImageView.setFitHeight(100);
-        petImageView.setLayoutX(200);
-        petImageView.setLayoutY(230);
+        petImageView.setLayoutX(350);
+        petImageView.setLayoutY(340);
         petImageView.setVisible(false);
 
         // ================== 添加切换场景按钮 ==================
@@ -103,18 +107,18 @@ public class HospitalBuilder {
         sceneSwitchButton.setStyle(
                 "-fx-background-color: transparent; " + // 透明背景
                         "-fx-text-fill: #2c3e50; " + // 文字颜色
-                        "-fx-padding: 12px 25px; " + // 内边距
+                        "-fx-padding: 4px 90px; " + // 内边距
                         "-fx-border-width: 0px; " + // 移除边框
                         "-fx-cursor: hand; " + // 鼠标手型
                         "-fx-effect: none;" // 移除初始阴影
         );
-        sceneSwitchButton.setLayoutX(355); // 水平居中
-        sceneSwitchButton.setLayoutY(500); // 底部位置
-        sceneSwitchButton.setOnAction(e -> {
-            showSceneSwitchAlert(); // 点击时显示提示对话框
-            // 这里可以添加实际场景切换逻辑（如切换到makePetMarket场景）
-        });
-
+        sceneSwitchButton.setLayoutX(610); // 水平居中
+        sceneSwitchButton.setLayoutY(650); // 底部位置
+        // sceneSwitchButton.setOnAction(e -> {
+        // showSceneSwitchAlert(); // 点击时显示提示对话框
+        // // 这里可以添加实际场景切换逻辑（如切换到makePetMarket场景）
+        // });
+        sceneSwitchButton.setOnAction(e -> sceneManager.enter(SceneType.MainStreet));
         // 治疗按钮点击事件
         treatmentButton.setOnAction(e -> {
             if (!isTreating) {
@@ -140,14 +144,15 @@ public class HospitalBuilder {
         return root;
     }
 
-    // ================== 新增：切换场景提示方法 ==================
-    private static void showSceneSwitchAlert() {
-        Alert alert = new Alert(AlertType.INFORMATION);
-        alert.setTitle("场景切换");
-        alert.setHeaderText(null);
-        alert.setContentText("成功切换到新场景！");
-        alert.showAndWait();
-    }
+    // // ================== 新增：切换场景提示方法 ==================
+    // private static void showSceneSwitchAlert() {
+    // Alert alert = new Alert(AlertType.INFORMATION);
+    // alert.setTitle("场景切换");
+    // alert.setHeaderText(null);
+    // alert.setContentText("成功切换到新场景！");
+    // alert.showAndWait();
+
+    // }
 
     private static void startTreatment() {
         // 检查资金是否足够
@@ -229,8 +234,8 @@ public class HospitalBuilder {
         insufficientFundsLabel.setStyle("-fx-text-fill: red; -fx-font-weight: bold; " +
                 "-fx-background-color: rgba(255,255,255,0.9); " +
                 "-fx-padding: 10px; -fx-background-radius: 5px;");
-        insufficientFundsLabel.setLayoutX(300);
-        insufficientFundsLabel.setLayoutY(250);
+        insufficientFundsLabel.setLayoutX(528);
+        insufficientFundsLabel.setLayoutY(330);
         insufficientFundsLabel.setVisible(true);
 
         // 获取当前场景的根节点
