@@ -61,12 +61,6 @@ public class Cat extends Pet {
     }
 }
 
-class LongMao extends Cat {
-    public LongMao(String name, int age, int health, int hunger, int mood, int cleanliness) {
-        super(name, age, health, hunger, mood, cleanliness);
-    }
-}
-
 class LiHuaMao extends Cat {
     public LiHuaMao(String name, int age, int health, int hunger, int mood, int cleanliness) {
         super(name, age, health, hunger, mood, cleanliness);
