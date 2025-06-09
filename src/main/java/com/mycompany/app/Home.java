@@ -81,10 +81,18 @@ public class Home {
         }
     }
 
-    public void updateBird(Bird bird) {
+    public void updateBird() {
         var birdButton = homeBuilder.getBirdButton();
         var home = homeBuilder.getHome();
 
+        var pets = Home.getInstance().getPets();
+        Bird bird = null;
+        for (var pet : pets) {
+            if (pet instanceof Bird) {
+                bird = (Bird) pet;
+                break;
+            }
+        }
         if (bird == null) {
             return;
         }
@@ -179,6 +187,13 @@ public class Home {
                     new BackgroundSize(BackgroundSize.AUTO, BackgroundSize.AUTO, false, false, true, false));
             homeBuilder.getBirdContainer().setBackground(new Background(bgImage));
         }
+    }
+
+    public void refreshAll() {
+        updateBird();
+        updateFish();
+        updatePets();
+        updateSceneItems();
     }
 
 }

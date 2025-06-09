@@ -25,20 +25,18 @@ public class PetMarketBuilder {
             new Item("444", 0, "1.png", "无", 0),
     };
 
-//    private final Goods[] goods3 = {
-//            new Goods("333", 1, "1.png"),
-//            new Goods("444", 2, "2.png"),
-//            new Goods("555", 3, "1.png"),
-//    };
-//
-//    private final Goods[] goods4 = {
-//            new Goods("666", 1, "1.png"),
-//            new Goods("777", 2, "1.png"),
-//            new Goods("888", 3, "2.png"),
-//    };
+    // private final Goods[] goods3 = {
+    // new Goods("333", 1, "1.png"),
+    // new Goods("444", 2, "2.png"),
+    // new Goods("555", 3, "1.png"),
+    // };
+    //
+    // private final Goods[] goods4 = {
+    // new Goods("666", 1, "1.png"),
+    // new Goods("777", 2, "1.png"),
+    // new Goods("888", 3, "2.png"),
+    // };
 
-    
-    
     private Pane makeItemRow(Pane imagePane, Label Lprice, Label Nprice, Label Lintroduce, Item good) {
         var row = new FlowPane();
         Button rowButton = new Button(good.name());
@@ -112,23 +110,25 @@ public class PetMarketBuilder {
         buyDialog.getChildren().add(Lmoney);
 
         Button BuyBtn = new Button();
-//        BuyBtn.setText("购买");
+        // BuyBtn.setText("购买");
         BuyBtn.setId("BuyButton");
         buyDialog.getChildren().add(BuyBtn);
         BuyBtn.setOnAction(e -> {
-        	if(Player.getInstance().getMoney() >= currentGood.price()) {
-        		if(currentGood.isFood() == 0 && Player.getInstance().getBag().content.containsKey(currentGood.name())) {
-        			System.out.println("该商品只能购买一个");
-        		}
-        		else {
-        			Player.getInstance().addMoney(-currentGood.price());
-        			Lmoney.setText("余额:" + Player.getInstance().getMoney());        			Player.getInstance().getBag().add(currentGood, 1);
-        			
-        		}
-        	}
-        	else {
-        		System.out.println("余额不足，无法购买");
-        	}
+            if (Player.getInstance().getMoney() >= currentGood.price()) {
+                if (currentGood.isFood() == 0
+                        && Player.getInstance().getBag().content.containsKey(currentGood.name())) {
+                    System.out.println("该商品只能购买一个");
+                } else {
+                    Player.getInstance().addMoney(-currentGood.price());
+                    Lmoney.setText("余额:" + Player.getInstance().getMoney());
+                    Player.getInstance().getBag().add(currentGood, 1);
+
+                    UIBuilder.backpackUI.refresh();
+                    Home.getInstance().refreshAll();
+                }
+            } else {
+                System.out.println("余额不足，无法购买");
+            }
         });
 
         Button exitBtn = new Button();
@@ -144,7 +144,7 @@ public class PetMarketBuilder {
         Pane root = new Pane();
         root.getStylesheets().add(getClass().getResource("/pet-market.css").toExternalForm());
         root.setId("market-pane");
-        
+
         Button btn1 = new Button();
         btn1.setId("marketBtn1");
         root.getChildren().add(btn1);
@@ -159,19 +159,19 @@ public class PetMarketBuilder {
             BuyScene(root, goods2);
         });
 
-//        Button btn3 = new Button();
-//        btn3.setId("marketBtn3");
-//        root.getChildren().add(btn3);
-//        btn3.setOnAction(e -> {
-//            BuyScene(root, goods3);
-//        });
-//
-//        Button btn4 = new Button();
-//        btn4.setId("marketBtn4");
-//        root.getChildren().add(btn4);
-//        btn4.setOnAction(e -> {
-//            BuyScene(root, goods4);
-//        });
+        // Button btn3 = new Button();
+        // btn3.setId("marketBtn3");
+        // root.getChildren().add(btn3);
+        // btn3.setOnAction(e -> {
+        // BuyScene(root, goods3);
+        // });
+        //
+        // Button btn4 = new Button();
+        // btn4.setId("marketBtn4");
+        // root.getChildren().add(btn4);
+        // btn4.setOnAction(e -> {
+        // BuyScene(root, goods4);
+        // });
 
         Button btn5 = new Button();
         btn5.setId("marketBtn5");

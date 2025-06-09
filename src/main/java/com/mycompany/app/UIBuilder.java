@@ -15,6 +15,7 @@ public class UIBuilder {
     private final SceneManager sceneManager;
     private final BooleanProperty drawerOpen = new SimpleBooleanProperty(false);
     private final BooleanProperty backpackOpen = new SimpleBooleanProperty(false);
+    static BackpackUI backpackUI;
 
     public UIBuilder(SceneManager sm) {
         this.sceneManager = sm;
@@ -136,10 +137,10 @@ public class UIBuilder {
             // 1) 创建背包面板
             Pane backpackPane = new Pane();
 
-            BackpackUI backpackUI = new BackpackUI();
+            backpackUI = new BackpackUI();
             backpackPane.getChildren().add(backpackUI.getView());
-            Player.getInstance().getBag().add(new Item("zyx", -1, "/s.png"), 1);
-            backpackUI.refresh();
+            // Player.getInstance().getBag().add(new Item("zyx", -1, "/s.png", "wow", 0),
+            // 1);
 
             backpackPane.setPrefSize(500, 400);
             backpackPane.setStyle(
