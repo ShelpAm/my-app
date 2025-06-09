@@ -6,11 +6,10 @@ import java.util.Random;
 
 public class Cat extends Pet {
     public Cat(String name, int age, int health, int hunger, int mood, int cleanliness) {
-        super(name, age, health, hunger, mood, cleanliness, 1, calcAdoptionRequirements());
+        super(name, age, health, hunger, mood, cleanliness, 20, calcAdoptionRequirements());
     }
-
     private static List<AdoptionRequirement> calcAdoptionRequirements() {
-        List<AdoptionRequirement> requirements = new ArrayList<>();
+        List<AdoptionRequirement> requirements =  new ArrayList<>();
         requirements.add(new AdoptionRequirement() {
             @Override
             public boolean check(Player player) {
@@ -19,7 +18,6 @@ public class Cat extends Pet {
         });
         return requirements;
     }
-
     public void eat(Food food) {
 
     }
@@ -45,10 +43,11 @@ public class Cat extends Pet {
         int t = rd.nextInt();
         if (t == 0 || t == 1) {
             return -10;
-        } else if (t == 2 && t == 3) {
+        }
+        else if (t == 2 && t == 3) {
             return 10;
-        } else
-            return 0;
+        }
+        else return 0;
     }
 
     public void update(double deltaTime) {
@@ -66,13 +65,34 @@ class LongMao extends Cat {
     public LongMao(String name, int age, int health, int hunger, int mood, int cleanliness) {
         super(name, age, health, hunger, mood, cleanliness);
     }
+}
 
-    public int changeMood() {
-        Random rd = new Random(5);
-        int t = rd.nextInt();
-        if (t == 0 || t == 1) {
-            return 10;
-        } else
-            return -10;
+class LiHuaMao extends Cat {
+    public LiHuaMao(String name, int age, int health, int hunger, int mood, int cleanliness) {
+        super(name, age, health, hunger, mood, cleanliness);
+    }
+}
+
+class YingDuan extends Cat {
+    public YingDuan(String name, int age, int health, int hunger, int mood, int cleanliness) {
+        super(name, age, health, hunger, mood, cleanliness);
+    }
+}
+
+class BuOuMao extends Cat {
+    public BuOuMao(String name, int age, int health, int hunger, int mood, int cleanliness) {
+        super(name, age, health, hunger, mood, cleanliness);
+    }
+}
+
+class XianLuoMao extends Cat {
+    public XianLuoMao(String name, int age, int health, int hunger, int mood, int cleanliness) {
+        super(name, age, health, hunger, mood, cleanliness);
+    }
+}
+
+class MianYinMao extends Cat {
+    public MianYinMao(String name, int age, int health, int hunger, int mood, int cleanliness) {
+        super(name, age, health, hunger, mood, cleanliness);
     }
 }

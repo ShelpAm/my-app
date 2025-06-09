@@ -2,14 +2,13 @@ package com.mycompany.app;
 
 import java.util.ArrayList;
 import java.util.List;
-
+import java.util.Random;
 public class Fish extends Pet {
     public Fish(String name, int age, int health, int hunger, int mood, int cleanliness) {
-        super(name, age, health, hunger, mood, cleanliness, 1, calcAdoptionRequirements());
+        super(name, age, health, hunger, mood, cleanliness, 10, calcAdoptionRequirements());
     }
-
     private static List<AdoptionRequirement> calcAdoptionRequirements() {
-        List<AdoptionRequirement> requirements = new ArrayList<>();
+        List<AdoptionRequirement> requirements =  new ArrayList<>();
         requirements.add(new AdoptionRequirement() {
             @Override
             public boolean check(Player player) {
@@ -18,15 +17,18 @@ public class Fish extends Pet {
         });
         return requirements;
     }
-
     public void eat(Food food) {
 
     }
-
     public int changeMood() {
         return -10;
     }
 
+    public int live() {
+        if (age > 10) return 0;
+        else return 1;
+    }
+    
     public void interact() {
         String[] actions = {
                 name + "用头蹭了蹭你的腿",
