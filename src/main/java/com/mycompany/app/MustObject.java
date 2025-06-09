@@ -23,8 +23,8 @@ public class MustObject extends Item {
         super(name, price, null, description, 0);
     }
 
-    public static List<MustObject> getDefaultMustObjects() {
-        List<MustObject> mustObjects = new ArrayList<>();
+    public static List<Item> getDefaultMustObjects() {
+        List<Item> mustObjects = new ArrayList<>();
         mustObjects.add(new MustObject("狗绳", 50, "文明养狗"));
         mustObjects.add(new MustObject("猫砂", 50, "猫有三急"));
         mustObjects.add(new MustObject("宠物窝", 100, "个小家伙都需要一个温暖的小窝"));
@@ -64,15 +64,15 @@ public class MustObject extends Item {
     private String getImagePathByName(String mbName) {
         switch (mbName) {
             case "狗绳":
-                return "/dogLeash.png";
+                return "/mustObjects/dogLeash.png";
             case "猫砂":
-                return "/catLitter.png";
+                return "/cat-litter.png";
             case "宠物窝":
-                return "/petKennels.png";
+                return "/wo.png";
             case "鱼缸":
-                return "/fishTank.png";
+                return "/scenes/fishtank.png";
             case "鸟笼":
-                return "/birdCage.png";
+                return "/scenes/birdlong.png";
             default:
                 return "/dogLeash.png";
         }

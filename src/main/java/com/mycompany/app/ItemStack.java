@@ -27,6 +27,6 @@ public class ItemStack {
 
     @Override
     public String toString() {
-        return item.name() + " ×" + number;
+        return item.getName() + " ×" + number;
     }
 }

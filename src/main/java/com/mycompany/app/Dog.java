@@ -19,10 +19,6 @@ public class Dog extends Pet {
         return requirements;
     }
 
-    public void eat(Food food) {
-
-    }
-
     public int changeMood(WeatherType type) {
         if (type.name() == "CLEAR") { // sunny
             return 10;
@@ -45,30 +41,31 @@ public class Dog extends Pet {
         mood = Math.min(100, mood + 5);
     }
 
-    public void play(Toy toy) {
-
-    }
-
     public void update(double deltaTime) {
 
     }
 
-    public void clean() {
-        System.out.println(name + "很抗拒，但最终还是洗完了");
-        cleanliness = 100;
-        System.out.println(name + "现在很干净");
-    }
 }
 
 class JinMaoDog extends Dog {
     public JinMaoDog(String name, int age, int health, int hunger, int mood, int cleanliness) {
         super(name, age, health, hunger, mood, cleanliness);
     }
+
+    @Override
+    public String getImagePath() {
+        return "/pets/dog-5.png";
+    }
 }
 
 class HaShiQi extends Dog {
     public HaShiQi(String name, int age, int health, int hunger, int mood, int cleanliness) {
         super(name, age, health, hunger, mood, cleanliness);
+    }
+
+    @Override
+    public String getImagePath() {
+        return "/pets/dog-1.png";
     }
 }
 
@@ -77,10 +74,20 @@ class BianMu extends Dog {
         super(name, age, health, hunger, mood, cleanliness);
     }
 
+    @Override
+    public String getImagePath() {
+        return "/pets/dog-2.png";
+    }
+
 }
 
 class ChaiQuan extends Dog {
     public ChaiQuan(String name, int age, int health, int hunger, int mood, int cleanliness) {
         super(name, age, health, hunger, mood, cleanliness);
+    }
+
+    @Override
+    public String getImagePath() {
+        return "/pets/dog-3.png";
     }
 }

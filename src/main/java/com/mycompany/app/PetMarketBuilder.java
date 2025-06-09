@@ -2,6 +2,10 @@ package com.mycompany.app;
 
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import javafx.scene.control.*;
 
 public class PetMarketBuilder {
@@ -13,29 +17,22 @@ public class PetMarketBuilder {
         this.sceneManager = sm;
     }
 
-    private final Item[] goods1 = {
-            new Item("111", 0, "2.png", "无", 1),
-            new Item("222", 0, "1.png", "无", 0),
-            new Item("333", 0, "1.png", "无", 0),
-    };
+    private final List<Item> goods1 = getAllDefaultGoods0();
+    private final List<Item> goods2 = getAllDefaultGoods1();
 
-    private final Item[] goods2 = {
-            new Item("222", 0, "1.png", "无", 1),
-            new Item("333", 0, "2.png", "无", 0),
-            new Item("444", 0, "1.png", "无", 0),
-    };
+    public static List<Item> getAllDefaultGoods0() {
+        List<Item> all = new ArrayList<>();
+        all.addAll(MustObject.getDefaultMustObjects());
+        all.addAll(Pet.getDefaultPets());
+        return all;
+    }
 
-    // private final Goods[] goods3 = {
-    // new Goods("333", 1, "1.png"),
-    // new Goods("444", 2, "2.png"),
-    // new Goods("555", 3, "1.png"),
-    // };
-    //
-    // private final Goods[] goods4 = {
-    // new Goods("666", 1, "1.png"),
-    // new Goods("777", 2, "1.png"),
-    // new Goods("888", 3, "2.png"),
-    // };
+    public static List<Item> getAllDefaultGoods1() {
+        List<Item> all = new ArrayList<>();
+        all.addAll(Toy.getDefaultToys());
+        all.addAll(Food.getDefaultFoods());
+        return all;
+    }
 
     private Pane makeItemRow(Pane imagePane, Label Lprice, Label Nprice, Label Lintroduce, Item good) {
         var row = new FlowPane();
@@ -65,12 +62,12 @@ public class PetMarketBuilder {
         return bgImage;
     }
 
-    public void BuyScene(Pane root, Item[] goods) {
+    public void BuyScene(Pane root, List<Item> goods) {
         Pane buyDialog = new Pane();
         buyDialog.setId("buy-dialog");
         root.getChildren().add(buyDialog);
         VBox BuyBoxRows = new VBox();
-        currentGood = goods[0];
+        currentGood = goods.get(0);
 
         Pane imagePane = new Pane();
         imagePane.setId("BuyImage");
@@ -97,9 +94,11 @@ public class PetMarketBuilder {
         Label Lintroduce = new Label();
         Lintroduce.setText("商品详情:" + currentGood.getDescription());
         Lintroduce.setId("introduceLabel");
+        Lintroduce.setWrapText(true);
         buyDialog.getChildren().add(Lintroduce);
 
         for (Item good : goods) {
+            // System.out.println("便利" + good);
             BuyBoxRows.getChildren().add(makeItemRow(imagePane, Lprice, Nprice,
                     Lintroduce, good));
         }
@@ -113,21 +112,27 @@ public class PetMarketBuilder {
         // BuyBtn.setText("购买");
         BuyBtn.setId("BuyButton");
         buyDialog.getChildren().add(BuyBtn);
+
+        var label = new MessageLabel(buyDialog);
+
         BuyBtn.setOnAction(e -> {
             if (Player.getInstance().getMoney() >= currentGood.getPrice()) {
                 if (currentGood.getIsFood() == 0
                         && Player.getInstance().getBag().content.containsKey(currentGood.getName())) {
-                    System.out.println("该商品只能购买一个");
+                    label.showMessage("该商品只能购买一个", 3);
                 } else {
                     Player.getInstance().addMoney(-currentGood.getPrice());
                     Lmoney.setText("余额:" + Player.getInstance().getMoney());
                     Player.getInstance().getBag().add(currentGood, 1);
 
                     UIBuilder.backpackUI.refresh();
+                    if (currentGood instanceof Pet) {
+                        Home.getInstance().getPets().add((Pet) currentGood);
+                    }
                     Home.getInstance().refreshAll();
                 }
             } else {
-                System.out.println("余额不足，无法购买");
+                label.showMessage("余额不足，无法购买", 3);
             }
         });
 

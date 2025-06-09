@@ -45,11 +45,11 @@ public class BackpackUI {
     }
 
     private VBox createCell(ItemStack stack) {
-        ImageView imageView = new ImageView(new Image(getClass().getResourceAsStream(stack.getItem().imagePath())));
+        ImageView imageView = new ImageView(new Image(getClass().getResourceAsStream(stack.getItem().getImagePath())));
         imageView.setFitWidth(60);
         imageView.setFitHeight(60);
 
-        Label name = new Label(stack.getItem().name());
+        Label name = new Label(stack.getItem().getName());
         Label quantity = new Label("×" + stack.getNumber());
 
         VBox vbox = new VBox(5, imageView, name, quantity);

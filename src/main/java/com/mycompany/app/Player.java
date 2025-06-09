@@ -10,7 +10,7 @@ public class Player {
     private String name;
     private Bag bag = new Bag();
     private ArrayList<Pet> myPets = new ArrayList<>();
-    private int money;
+    private int money = 5000;
 
     private static Player instance = new Player("You");
 
@@ -36,7 +36,7 @@ public class Player {
     }
 
     public boolean canAfford(Item item) {
-        return money >= item.price();
+        return money >= item.getPrice();
     }
 
     public void addMoney(int delta) {

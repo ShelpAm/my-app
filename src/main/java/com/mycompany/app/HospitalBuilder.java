@@ -166,12 +166,17 @@ public class HospitalBuilder {
             return;
         }
 
+        var pets = Home.getInstance().getPets();
+        if (pets.isEmpty()) {
+            return;
+        }
+
         isTreating = true;
         Player.getInstance().addMoney(-50); // 扣除治疗费用
         moneyLabel.setText("资金: $" + Player.getInstance().getMoney());
 
         // 显示宠物图片
-        Image petImage = new Image(HospitalBuilder.class.getResourceAsStream("/pets/bird-1.png"));
+        Image petImage = new Image(HospitalBuilder.class.getResourceAsStream(pets.getFirst().getImagePath()));
         petImageView.setImage(petImage);
         petImageView.setVisible(true);
 

@@ -8,8 +8,9 @@ public class Cat extends Pet {
     public Cat(String name, int age, int health, int hunger, int mood, int cleanliness) {
         super(name, age, health, hunger, mood, cleanliness, 20, calcAdoptionRequirements());
     }
+
     private static List<AdoptionRequirement> calcAdoptionRequirements() {
-        List<AdoptionRequirement> requirements =  new ArrayList<>();
+        List<AdoptionRequirement> requirements = new ArrayList<>();
         requirements.add(new AdoptionRequirement() {
             @Override
             public boolean check(Player player) {
@@ -17,9 +18,6 @@ public class Cat extends Pet {
             }
         });
         return requirements;
-    }
-    public void eat(Food food) {
-
     }
 
     public void interact() {
@@ -34,18 +32,12 @@ public class Cat extends Pet {
         mood = Math.min(100, mood + 5);
     }
 
-    public void play(Toy toy) {
-
-    }
-
     public int changeMood(WeatherType type) {
         if (type.name() == "CLEAR") { // sunny
             return -10;
-        }
-        else if (type.name() == "RAIN") { // rain
+        } else if (type.name() == "RAIN") { // rain
             return 10;
-        }
-        else { // snow 
+        } else { // snow
             return -10;
         }
     }
@@ -54,16 +46,16 @@ public class Cat extends Pet {
 
     }
 
-    public void clean() {
-        System.out.println(name + "很享受的洗完了");
-        cleanliness = 100;
-        System.out.println(name + "现在很干净");
-    }
 }
 
 class LiHuaMao extends Cat {
     public LiHuaMao(String name, int age, int health, int hunger, int mood, int cleanliness) {
         super(name, age, health, hunger, mood, cleanliness);
+    }
+
+    @Override
+    public String getImagePath() {
+        return "/pets/cat-2.png";
     }
 }
 
@@ -71,11 +63,21 @@ class YingDuan extends Cat {
     public YingDuan(String name, int age, int health, int hunger, int mood, int cleanliness) {
         super(name, age, health, hunger, mood, cleanliness);
     }
+
+    @Override
+    public String getImagePath() {
+        return "/pets/cat-1.png";
+    }
 }
 
 class BuOuMao extends Cat {
     public BuOuMao(String name, int age, int health, int hunger, int mood, int cleanliness) {
         super(name, age, health, hunger, mood, cleanliness);
+    }
+
+    @Override
+    public String getImagePath() {
+        return "/pets/cat-5.png";
     }
 }
 
@@ -83,10 +85,20 @@ class XianLuoMao extends Cat {
     public XianLuoMao(String name, int age, int health, int hunger, int mood, int cleanliness) {
         super(name, age, health, hunger, mood, cleanliness);
     }
+
+    @Override
+    public String getImagePath() {
+        return "/pets/cat-3.png";
+    }
 }
 
 class MianYinMao extends Cat {
     public MianYinMao(String name, int age, int health, int hunger, int mood, int cleanliness) {
         super(name, age, health, hunger, mood, cleanliness);
+    }
+
+    @Override
+    public String getImagePath() {
+        return "/pets/cat-6.png";
     }
 }

@@ -5,67 +5,33 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
-import javafx.scene.Cursor;
-import javafx.scene.input.MouseEvent;
+
 import java.util.ArrayList;
 import java.util.List;
 
+import javafx.scene.Cursor;
+import javafx.scene.input.MouseEvent;
+
 // name -> arrayList;
-class Food {
-    private String name;
-    private int money;
+class Food extends Item {
     private int satiety;
-    private String description;
     private int moodAdd;
 
-    public static List<Food> getDefaultFoods() {
-        List<Food> foods = new ArrayList<>();
-        foods.add(new Food("狗粮"));
-        foods.add(new Food("猫粮"));
-        foods.add(new Food("猫条"));
-        foods.add(new Food("干草"));
-        foods.add(new Food("水果"));
+    public Food(String name, int money, int satiety, int moodAdd, String description) {
+        super(name, money, null, description, 1); // isFood = 1
+        this.satiety = satiety;
+        this.moodAdd = moodAdd;
+    }
+
+    public static List<Item> getDefaultFoods() {
+        List<Item> foods = new ArrayList<>();
+        foods.add(new Food("狗粮", 50, 20, 0, "发狗粮啦"));
+        foods.add(new Food("猫粮", 50, 20, 0, "健康又美味，干净又卫生"));
+        foods.add(new Food("猫条", 100, 10, 10, "给我买给我买嘛"));
+        foods.add(new Food("干草", 50, 20, 0, "富含蛋白质和钙，龙猫的最爱"));
+        foods.add(new Food("水果", 50, 20, 0, "富含维生素，小鸟的最爱"));
         return foods;
     }
-
-    public Food(String name) {
-        this.name = name;
-        if (name.equals("狗粮")) {
-            money = 50;
-            satiety = 20;
-            moodAdd = 0;
-            description = "发狗粮啦";
-        } else if (name.equals("猫粮")) {
-            money = 50;
-            satiety = 20;
-            moodAdd = 0;
-            description = "健康又美味，干净又卫生";
-        } else if (name.equals("猫条")) {
-            money = 100;
-            satiety = 10;
-            moodAdd = 10;
-            description = "给我买给我买嘛";
-        } else if (name.equals("干草")) {
-            money = 50;
-            satiety = 20;
-            moodAdd = 0;
-            description = "富含蛋白质和钙，龙猫的最爱";
-        } else if (name.equals("水果")) {
-            money = 50;
-            satiety = 20;
-            moodAdd = 0;
-            description = "富含维生素，小鸟的最爱";
-        } else {
-            money = 50;
-            satiety = 20;
-            moodAdd = 0;
-            description = "有7秒的记忆让我忘记有没有干过饭了";
-        }
-    }
-
-    public Food() {
-
-    };
 
     public Pane create() {
         StackPane foodPane = new StackPane();
@@ -98,20 +64,25 @@ class Food {
     private String getImagePathByName(String foodName) {
         switch (foodName) {
             case "干草":
-                return "/hay.png";
+                return "/foods/hay.png";
             case "狗粮":
-                return "/dogFood.png";
+                return "/foods/dogFood.png";
             case "猫条":
-                return "/catStrips.png";
+                return "/foods/catStrips.png";
             case "猫粮":
-                return "/catFood.png";
+                return "/foods/catFood.png";
             case "水果":
-                return "/fruit.png";
+                return "/foods/fruit.png";
             case "饲料":
-                return "/fodder.png";
+                return "/foods/fodder.png";
             default:
-                return "/fruit.png";
+                return "/foods/fruit.png";
         }
+    }
+
+    @Override
+    public String getImagePath() {
+        return getImagePathByName(name);
     }
 
     private void handleToyClick(MouseEvent event) {
@@ -119,14 +90,6 @@ class Food {
         System.out.println("描述: " + description);
         System.out.println("心情值增加: " + moodAdd);
 
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public int getMoney() {
-        return money;
     }
 
     public int getSatiety() {

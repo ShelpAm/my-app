@@ -1,8 +1,9 @@
 package com.mycompany.app;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public abstract class Pet {
+public abstract class Pet extends Item {
     protected String name;
     protected int age;
     protected int health;
@@ -15,8 +16,34 @@ public abstract class Pet {
 
     protected List<AdoptionRequirement> adoptionRequirements;
 
+    public static List<Item> getDefaultPets() {
+        List<Item> pets = new ArrayList<>();
+
+        // 狗类
+        pets.add(new JinMaoDog("金毛", 1, 100, 50, 50, 80));
+        pets.add(new HaShiQi("哈士奇", 1, 100, 50, 50, 80));
+        pets.add(new BianMu("边牧", 1, 100, 50, 50, 80));
+        pets.add(new ChaiQuan("柴犬", 1, 100, 50, 50, 80));
+
+        // 猫类
+        pets.add(new LiHuaMao("狸花猫", 1, 100, 50, 50, 80));
+        pets.add(new YingDuan("英短", 1, 100, 50, 50, 80));
+        pets.add(new BuOuMao("布偶猫", 1, 100, 50, 50, 80));
+        pets.add(new XianLuoMao("暹罗猫", 1, 100, 50, 50, 80));
+        pets.add(new MianYinMao("缅因猫", 1, 100, 50, 50, 80));
+
+        // 鸟类
+        pets.add(new BaiLingNiao("白领鸟", 1, 100, 50, 50, 80));
+        pets.add(new YingWu("鹦鹉", 1, 100, 50, 50, 80));
+        pets.add(new ZhenZhuNiao("珍珠鸟", 1, 100, 50, 50, 80));
+
+        return pets;
+    }
+
     public Pet(String name, int age, int health, int hunger, int mood,
             int cleanliness, int lifeTime, List<AdoptionRequirement> adoptionRequirements) {
+        super(name, 100, null, "我是宠物！！哈哈", 0);
+
         this.name = name;
         this.age = age;
         this.health = health;
@@ -49,11 +76,17 @@ public abstract class Pet {
         return this.name;
     }
 
-    public abstract void eat(Food food);
+    public void eat(Food food) {
+        MessageLabel l = new MessageLabel(Home.getInstance().getHomeBuilder().home);
+        l.showMessage("真好吃！", 3);
+    }
 
     public abstract void interact();
 
-    public abstract void play(Toy toy);
+    public void play(Toy toy) {
+        MessageLabel l = new MessageLabel(Home.getInstance().getHomeBuilder().home);
+        l.showMessage("下次继续", 3);
+    }
 
     public abstract void update(double deltaTime);
 
@@ -61,7 +94,10 @@ public abstract class Pet {
         age += 0; // TODO
     }
 
-    public abstract void clean();
+    public void clean() {
+        MessageLabel l = new MessageLabel(Home.getInstance().getHomeBuilder().home);
+        l.showMessage("你还没有清洁用品！请先购买一个！", 3);
+    }
 
     public boolean checkAdoptionRequirements(Player player) {
         for (var adoptionRule : adoptionRequirements) {

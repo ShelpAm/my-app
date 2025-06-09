@@ -33,14 +33,14 @@ public class Game {
                     hour = 0;
                     ++day;
                 }
-                System.out.println("[info] time changed to day " + day + "  hour " + hour);
+                // System.out.println("[info] time changed to day " + day + " hour " + hour);
 
                 Thread thread = new Thread(() -> {
                     WeatherService ws = new WeatherService("05719e482b5f28e12b521f6e618635c4");
                     try {
                         WeatherType weather = ws.getCurrentWeather("Nanchang");
                         Home.getInstance().updateWeather(weather);
-                        System.out.println("[info] weather updated to " + weather);
+                        // System.out.println("[info] weather updated to " + weather);
                     } catch (InterruptedException e) {
                         return;
                     } catch (Exception e) {
@@ -94,13 +94,13 @@ public class Game {
 
         scheduler.scheduleAtFixedRate(new TimerTask() {
             public void run() {
-                System.out.println("[debug] test timer, should be triggered every 1s");
+                // System.out.println("[debug] test timer, should be triggered every 1s");
             }
         }, 0, 1, TimeUnit.SECONDS);
 
         scheduler.scheduleAtFixedRate(new TimerTask() {
             public void run() {
-                System.out.println("[debug] test timer, should be triggered every 5s");
+                // System.out.println("[debug] test timer, should be triggered every 5s");
             }
         }, 0, 5, TimeUnit.SECONDS);
     }

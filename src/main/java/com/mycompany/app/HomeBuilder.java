@@ -100,10 +100,10 @@ public class HomeBuilder {
                     PopupButtonHelper.showPopupButtons(
                             home,
                             x, y,
-                            new String[] { "/1.png", "/2.png", "/1.png" },
-                            () -> System.out.println("执行技能 1"),
-                            () -> System.out.println("执行技能 2"),
-                            () -> System.out.println("执行技能 3"));
+                            new String[] { "/zhuazi.png", "/zhuazi.png", "/zhuazi.png" },
+                            () -> pet.clean(),
+                            () -> pet.play((Toy) Toy.getDefaultToys().getFirst()),
+                            () -> pet.eat((Food) Food.getDefaultFoods().getFirst()));
                 });
                 home.getChildren().add(btn);
                 ++i;

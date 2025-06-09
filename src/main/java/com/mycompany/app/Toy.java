@@ -12,39 +12,25 @@ import java.util.List;
 import javafx.scene.Cursor;
 import javafx.scene.input.MouseEvent;
 
-public class Toy {
-    private String name;
-    private int money;
-    private String description;
+public class Toy extends Item {
     private int moodAdd;
 
-    public static List<Toy> getDefaultToys() {
-        List<Toy> toys = new ArrayList<>();
-        toys.add(new Toy("飞盘"));
-        toys.add(new Toy("逗猫棒"));
-        toys.add(new Toy("跑轮"));
+    public Toy(String name, int money, int moodAdd, String description) {
+        super(name, money, null, description, 0); // isFood = 0
+        this.moodAdd = moodAdd;
+    }
+
+    public static List<Item> getDefaultToys() {
+        List<Item> toys = new ArrayList<>();
+        toys.add(new Toy("飞盘", 100, 10, "狗们最喜欢的玩具，可以让狗狗们尽情释放活力"));
+        toys.add(new Toy("逗猫棒", 100, 10, "好奇宝宝有着无法拒绝的吸引力"));
+        toys.add(new Toy("跑轮", 100, 10, "鼠鼠我呀，最喜欢跑步啦。"));
         return toys;
     }
 
-    public Toy(String name) {
-        this.name = name;
-        if (name.equals("飞盘")) {
-            money = 100;
-            moodAdd = 10;
-            description = "狗们最喜欢的玩具，可以让狗狗们尽情释放活力";
-        } else if (name.equals("逗猫棒")) {
-            money = 100;
-            moodAdd = 10;
-            description = "好奇宝宝有着无法拒绝的吸引力";
-        } else if (name.equals("跑轮")) {
-            money = 100;
-            moodAdd = 10;
-            description = "鼠鼠我呀，最喜欢跑步啦。";
-        }
-    }
-
-    public Toy() {
-
+    @Override
+    public String getImagePath() {
+        return getImagePathByName(name);
     }
 
     public Pane createUI() {
@@ -80,11 +66,11 @@ public class Toy {
 
         switch (toyName) {
             case "飞盘":
-                return "/frisbee.png";
+                return "/toys/frisbee.png";
             case "逗猫棒":
-                return "/catTeaser.png";
+                return "/toys/catTeaser.png";
             case "跑轮":
-                return "/runningWheels.png";
+                return "/toys/runningWheels.png";
             default:
                 return "/frisbee.png";
         }
@@ -94,14 +80,6 @@ public class Toy {
         System.out.println("使用了玩具: " + name);
         System.out.println("描述: " + description);
         System.out.println("心情值增加: " + moodAdd);
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public int getMoney() {
-        return money;
     }
 
     public int getMoodAdd() {

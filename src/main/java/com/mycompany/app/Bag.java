@@ -12,10 +12,10 @@ public class Bag {
 
     public void add(Item item, int number) {
         int originalNumber = 0;
-        if (content.containsKey(item.name())) {
-            originalNumber = content.remove(item.name()).getNumber();
+        if (content.containsKey(item.getName())) {
+            originalNumber = content.remove(item.getName()).getNumber();
         }
-        content.put(item.name(), new ItemStack(item, originalNumber + number));
+        content.put(item.getName(), new ItemStack(item, originalNumber + number));
     }
 
     public void add(ItemStack itemStack) {

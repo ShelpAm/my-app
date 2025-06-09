@@ -1,5 +1,6 @@
 package com.mycompany.app;
 
+import java.time.temporal.IsoFields;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -60,7 +61,7 @@ public class Home {
             weatherImagePath = "/scenes/day-clear";
         }
         weatherImagePath += ".png";
-        System.out.println("[info] weatherImagePath: " + weatherImagePath);
+        // System.out.println("[info] weatherImagePath: " + weatherImagePath);
 
         // Special for this kind of condition.
         if (weatherImagePath.equals("/scenes/day-clear.png")) {
@@ -148,6 +149,10 @@ public class Home {
 
         int i = 0;
         for (var pet : Home.getInstance().getPets()) {
+            if (pet instanceof Bird) {
+                continue;
+            }
+
             if (i >= layouts.length)
                 break; // 防止越界
             Button btn = new ClippedImageButton(pet.getImagePath(), null);
@@ -163,10 +168,10 @@ public class Home {
                 PopupButtonHelper.showPopupButtons(
                         home,
                         x, y,
-                        new String[] { "/1.png", "/2.png", "/1.png" },
-                        () -> System.out.println("执行技能 1 for " + pet.getName()),
-                        () -> System.out.println("执行技能 2 for " + pet.getName()),
-                        () -> System.out.println("执行技能 3 for " + pet.getName()));
+                        new String[] { "/zhuazi.png", "/zhuazi.png", "/zhuazi.png" },
+                        () -> pet.play((Toy) Toy.getDefaultToys().getFirst()),
+                        () -> pet.clean(),
+                        () -> pet.eat((Food) Food.getDefaultFoods().getFirst()));
             });
 
             petButtons.add(btn);
@@ -177,7 +182,7 @@ public class Home {
 
     public void updateSceneItems() {
         // 鸟笼
-        if (Player.getInstance().getBag().content.containsKey("birdCage")) {
+        if (Player.getInstance().getBag().content.containsKey("鸟笼")) {
             Image image = new Image(getClass().getResource("/scenes/birdlong.png").toExternalForm());
             BackgroundImage bgImage = new BackgroundImage(
                     image,
