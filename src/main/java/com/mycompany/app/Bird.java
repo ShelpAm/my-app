@@ -2,13 +2,14 @@ package com.mycompany.app;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
+
 public class Bird extends Pet {
     public Bird(String name, int age, int health, int hunger, int mood, int cleanliness) {
         super(name, age, health, hunger, mood, cleanliness, 15, calcAdoptionRequirements());
     }
+
     private static List<AdoptionRequirement> calcAdoptionRequirements() {
-        List<AdoptionRequirement> requirements =  new ArrayList<>();
+        List<AdoptionRequirement> requirements = new ArrayList<>();
         requirements.add(new AdoptionRequirement() {
             @Override
             public boolean check(Player player) {
@@ -17,6 +18,7 @@ public class Bird extends Pet {
         });
         return requirements;
     }
+
     public void eat(Food food) {
 
     }
@@ -24,11 +26,9 @@ public class Bird extends Pet {
     public int changeMood(WeatherType type) {
         if (type.name() == "CLEAR") { // sunny
             return 10;
-        }
-        else if (type.name() == "RAIN") { // rain
+        } else if (type.name() == "RAIN") { // rain
             return -10;
-        }
-        else { // snow 
+        } else { // snow
             return -10;
         }
     }

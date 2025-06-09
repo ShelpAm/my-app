@@ -56,6 +56,9 @@ public class App extends Application {
         stage.setScene(sm.getScene());
         stage.show();
         Game.init();
+
+        Home.getInstance().add(new Dog("fww", 1, 1, 1, 1, 1));
+        Home.getInstance().updatePets();
     }
 
     public static void exit() {

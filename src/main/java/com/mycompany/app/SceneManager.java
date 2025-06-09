@@ -44,6 +44,7 @@ public class SceneManager {
 
     public SceneManager(Stage stage) {
         this.stage = stage;
+        this.stage.setOnCloseRequest(e -> App.exit());
         this.layers = new StackPane();
         this.scene = new Scene(layers, stage.getWidth(), stage.getHeight());
         scene.getStylesheets().add(getClass().getResource("/general.css").toExternalForm());

@@ -1,6 +1,7 @@
 package com.mycompany.app;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javafx.geometry.Point2D;
 import javafx.scene.control.*;
@@ -11,6 +12,23 @@ public class HomeBuilder {
     private final SceneManager sceneManager;
     private Button birdButton;
     private Pane weatherContainer;
+    Pane home;
+
+    public Pane getHome() {
+        return home;
+    }
+
+    public void setHome(Pane home) {
+        this.home = home;
+    }
+
+    public Button getBirdButton() {
+        return birdButton;
+    }
+
+    public void setBirdButton(Button birdButton) {
+        this.birdButton = birdButton;
+    }
 
     public Pane getWeatherContainer() {
         return weatherContainer;
@@ -25,13 +43,14 @@ public class HomeBuilder {
         Home.getInstance().setHomeBuilder(this);
     }
 
+    final Point2D[] mousePos = { new Point2D(0, 0) };
+
     public Pane makeHome() {
-        Pane home = new Pane();
+        home = new Pane();
         home.getStylesheets().add(getClass().getResource("/home.css").toExternalForm());
         home.setId("home");
         home.setPrefSize(sceneManager.getScene().getWidth(), sceneManager.getScene().getHeight());
 
-        final Point2D[] mousePos = { new Point2D(0, 0) };
         home.setOnMouseMoved(e -> {
             mousePos[0] = new Point2D(e.getSceneX(), e.getSceneY());
         });
@@ -51,12 +70,19 @@ public class HomeBuilder {
 
         { // Pets
             ArrayList<Button> blanket = new ArrayList<>();
-            {
-                Button btn = new ClippedImageButton("/pets/cat-1.png", null);
+            Point2D[] layouts = new Point2D[] {
+                    new Point2D(200, 350),
+                    new Point2D(500, 300),
+                    new Point2D(300, 450),
+                    new Point2D(550, 400)
+            };
+            int i = 0;
+            for (var pet : Home.getInstance().getPets()) {
+                Button btn = new ClippedImageButton(pet.getImagePath(), null);
                 btn.setScaleX(0.5);
                 btn.setScaleY(0.5);
-                btn.setLayoutX(200);
-                btn.setLayoutY(350);
+                btn.setLayoutX(layouts[i].getX());
+                btn.setLayoutY(layouts[i].getY());
                 blanket.add(btn);
 
                 btn.setOnAction(e -> {
@@ -71,36 +97,8 @@ public class HomeBuilder {
                             () -> System.out.println("执行技能 2"),
                             () -> System.out.println("执行技能 3"));
                 });
-
-            }
-            {
-                Button btn = new ClippedImageButton("/pets/dog-2.png", null);
-                btn.setScaleX(0.5);
-                btn.setScaleY(0.5);
-                btn.setLayoutX(500);
-                btn.setLayoutY(300);
-                blanket.add(btn);
-            }
-            {
-                Button btn = new ClippedImageButton("/pets/bird-2.png", null);
-                btn.setScaleX(0.5);
-                btn.setScaleY(0.5);
-                btn.setLayoutX(300);
-                btn.setLayoutY(450);
-                blanket.add(btn);
-            }
-            {
-                Button btn = new ClippedImageButton("/pets/bird-2.png", null);
-                btn.setScaleX(0.5);
-                btn.setScaleY(0.5);
-                btn.setLayoutX(550);
-                btn.setLayoutY(400);
-                blanket.add(btn);
-            }
-            for (var slot : blanket) {
-                if (slot != null) {
-                    home.getChildren().add(slot);
-                }
+                home.getChildren().add(btn);
+                ++i;
             }
 
             // 当买鸟时，才调用updateBird。
@@ -110,24 +108,6 @@ public class HomeBuilder {
         return home;
     }
 
-    private void updateBird(Bird bird, Pane home) {
-        if (bird == null) {
-            return;
-        }
-
-        if (birdButton == null) {
-            return;
-        }
-
-        assert home == (Pane) birdButton.getParent();
-        home.getChildren().remove(birdButton);
-
-        birdButton = new ClippedImageButton(bird.getImagePath(), null);
-        birdButton.setScaleX(0.5);
-        birdButton.setScaleY(0.5);
-        birdButton.setLayoutX(-220);
-        birdButton.setLayoutY(480);
-        home.getChildren().add(birdButton);
-    }
+    List<Button> petButtons = new ArrayList<>();
 
 }

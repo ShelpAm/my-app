@@ -1,7 +1,6 @@
 package com.mycompany.app;
 
 import java.util.List;
-import java.util.Random;
 import java.util.ArrayList;
 
 public class Dog extends Pet {
@@ -10,7 +9,7 @@ public class Dog extends Pet {
     }
 
     private static List<AdoptionRequirement> calcAdoptionRequirements() {
-        List<AdoptionRequirement> requirements =  new ArrayList<>();
+        List<AdoptionRequirement> requirements = new ArrayList<>();
         requirements.add(new AdoptionRequirement() {
             @Override
             public boolean check(Player player) {
@@ -19,7 +18,6 @@ public class Dog extends Pet {
         });
         return requirements;
     }
-    
 
     public void eat(Food food) {
 
@@ -28,11 +26,9 @@ public class Dog extends Pet {
     public int changeMood(WeatherType type) {
         if (type.name() == "CLEAR") { // sunny
             return 10;
-        }
-        else if (type.name() == "RAIN") { // rain
+        } else if (type.name() == "RAIN") { // rain
             return -10;
-        }
-        else { // snow 
+        } else { // snow
             return 0;
         }
     }
