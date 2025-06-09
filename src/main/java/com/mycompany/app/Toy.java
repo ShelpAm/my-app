@@ -5,28 +5,38 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import javafx.scene.Cursor;
 import javafx.scene.input.MouseEvent;
 
 public class Toy {
     private String name;
     private int money;
-    private int moodAdd;
     private String description;
+    private int moodAdd;
+
+    public static List<Toy> getDefaultToys() {
+        List<Toy> toys = new ArrayList<>();
+        toys.add(new Toy("飞盘"));
+        toys.add(new Toy("逗猫棒"));
+        toys.add(new Toy("跑轮"));
+        return toys;
+    }
 
     public Toy(String name) {
         this.name = name;
-        if (name == "飞盘") {
+        if (name.equals("飞盘")) {
             money = 100;
             moodAdd = 10;
             description = "狗们最喜欢的玩具，可以让狗狗们尽情释放活力";
-        }
-        else if (name == "逗猫棒") {
+        } else if (name.equals("逗猫棒")) {
             money = 100;
             moodAdd = 10;
             description = "好奇宝宝有着无法拒绝的吸引力";
-        }
-        else if (name == "跑轮") {
+        } else if (name.equals("跑轮")) {
             money = 100;
             moodAdd = 10;
             description = "鼠鼠我呀，最喜欢跑步啦。";
@@ -40,7 +50,7 @@ public class Toy {
     public Pane createUI() {
 
         StackPane toyPane = new StackPane();
-        toyPane.setPrefSize(100, 100); 
+        toyPane.setPrefSize(100, 100);
 
         try {
             String imagePath = getImagePathByName(name);

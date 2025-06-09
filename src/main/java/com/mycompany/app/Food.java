@@ -8,6 +8,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.Cursor;
 import javafx.scene.input.MouseEvent;
 import java.util.ArrayList;
+import java.util.List;
 
 // name -> arrayList;
 class Food {
@@ -17,39 +18,44 @@ class Food {
     private String description;
     private int moodAdd;
 
+    public static List<Food> getDefaultFoods() {
+        List<Food> foods = new ArrayList<>();
+        foods.add(new Food("狗粮"));
+        foods.add(new Food("猫粮"));
+        foods.add(new Food("猫条"));
+        foods.add(new Food("干草"));
+        foods.add(new Food("水果"));
+        return foods;
+    }
+
     public Food(String name) {
         this.name = name;
-        if (name == "狗粮") {
+        if (name.equals("狗粮")) {
             money = 50;
             satiety = 20;
             moodAdd = 0;
             description = "发狗粮啦";
-        }
-        else if (name == "猫粮") {
+        } else if (name.equals("猫粮")) {
             money = 50;
             satiety = 20;
             moodAdd = 0;
             description = "健康又美味，干净又卫生";
-        }
-        else if (name == "猫条") {
+        } else if (name.equals("猫条")) {
             money = 100;
             satiety = 10;
             moodAdd = 10;
             description = "给我买给我买嘛";
-        }
-        else if (name == "干草") {
+        } else if (name.equals("干草")) {
             money = 50;
             satiety = 20;
             moodAdd = 0;
             description = "富含蛋白质和钙，龙猫的最爱";
-        }
-        else if (name == "水果") {
+        } else if (name.equals("水果")) {
             money = 50;
             satiety = 20;
             moodAdd = 0;
             description = "富含维生素，小鸟的最爱";
-        }
-        else {
+        } else {
             money = 50;
             satiety = 20;
             moodAdd = 0;
@@ -63,34 +69,34 @@ class Food {
 
     public Pane create() {
         StackPane foodPane = new StackPane();
-        foodPane.setPrefSize(100, 100); 
-        
+        foodPane.setPrefSize(100, 100);
+
         try {
             String imagePath = getImagePathByName(name);
             Image foodImage = new Image(getClass().getResourceAsStream(imagePath));
             ImageView imageView = new ImageView(foodImage);
-            
+
             imageView.setFitWidth(80);
             imageView.setFitHeight(80);
             imageView.setPreserveRatio(true);
-            
+
             Button foodButton = new Button();
             foodButton.setGraphic(imageView);
             foodButton.setStyle("-fx-background-color: transparent;");
             foodButton.setCursor(Cursor.HAND);
-        
+
             foodButton.setOnMouseClicked(this::handleToyClick);
-            
+
             foodPane.getChildren().add(foodButton);
-        } catch(Exception  e) {
+        } catch (Exception e) {
             System.out.println("c si ning de meng");
         }
-        
+
         return foodPane;
     }
-    
+
     private String getImagePathByName(String foodName) {
-        switch(foodName) {
+        switch (foodName) {
             case "干草":
                 return "/hay.png";
             case "狗粮":
@@ -107,26 +113,26 @@ class Food {
                 return "/fruit.png";
         }
     }
- 
+
     private void handleToyClick(MouseEvent event) {
         System.out.println("吃了: " + name);
         System.out.println("描述: " + description);
         System.out.println("心情值增加: " + moodAdd);
-        
+
     }
 
     public String getName() {
         return name;
     }
-    
+
     public int getMoney() {
         return money;
     }
-    
+
     public int getSatiety() {
         return satiety;
     }
-    
+
     public String getDescription() {
         return description;
     }

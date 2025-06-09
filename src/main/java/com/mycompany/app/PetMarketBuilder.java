@@ -39,14 +39,14 @@ public class PetMarketBuilder {
 
     private Pane makeItemRow(Pane imagePane, Label Lprice, Label Nprice, Label Lintroduce, Item good) {
         var row = new FlowPane();
-        Button rowButton = new Button(good.name());
+        Button rowButton = new Button(good.getName());
         rowButton.setId("RowButton");
         rowButton.setOnAction(e -> {
             currentGood = good;
-            imagePane.setBackground(new Background(getbgImage(currentGood.imagePath())));
-            Lprice.setText("金额:" + currentGood.price());
-            Lintroduce.setText("商品详情:" + currentGood.discription());
-            Nprice.setText(currentGood.name());
+            imagePane.setBackground(new Background(getbgImage(currentGood.getImagePath())));
+            Lprice.setText("金额:" + currentGood.getPrice());
+            Lintroduce.setText("商品详情:" + currentGood.getDescription());
+            Nprice.setText(currentGood.getName());
         });
         row.getChildren().addAll(rowButton);
         row.setId("BuyRow");
@@ -74,9 +74,9 @@ public class PetMarketBuilder {
 
         Pane imagePane = new Pane();
         imagePane.setId("BuyImage");
-        imagePane.setBackground(new Background(getbgImage(currentGood.imagePath())));
+        imagePane.setBackground(new Background(getbgImage(currentGood.getImagePath())));
         buyDialog.getChildren().add(imagePane);
-        imagePane.setBackground(new Background(getbgImage(currentGood.imagePath())));
+        imagePane.setBackground(new Background(getbgImage(currentGood.getImagePath())));
 
         ScrollPane scrollPane = new ScrollPane(BuyBoxRows);
         scrollPane.setId("scroll-pane");
@@ -85,17 +85,17 @@ public class PetMarketBuilder {
         buyDialog.getChildren().add(scrollPane);
 
         Label Lprice = new Label();
-        Lprice.setText("金额:" + currentGood.price());
+        Lprice.setText("金额:" + currentGood.getPrice());
         Lprice.setId("priceLabel");
         buyDialog.getChildren().add(Lprice);
 
         Label Nprice = new Label();
-        Nprice.setText(currentGood.name());
+        Nprice.setText(currentGood.getName());
         Nprice.setId("nameLabel");
         buyDialog.getChildren().add(Nprice);
 
         Label Lintroduce = new Label();
-        Lintroduce.setText("商品详情:" + currentGood.discription());
+        Lintroduce.setText("商品详情:" + currentGood.getDescription());
         Lintroduce.setId("introduceLabel");
         buyDialog.getChildren().add(Lintroduce);
 
@@ -114,12 +114,12 @@ public class PetMarketBuilder {
         BuyBtn.setId("BuyButton");
         buyDialog.getChildren().add(BuyBtn);
         BuyBtn.setOnAction(e -> {
-            if (Player.getInstance().getMoney() >= currentGood.price()) {
-                if (currentGood.isFood() == 0
-                        && Player.getInstance().getBag().content.containsKey(currentGood.name())) {
+            if (Player.getInstance().getMoney() >= currentGood.getPrice()) {
+                if (currentGood.getIsFood() == 0
+                        && Player.getInstance().getBag().content.containsKey(currentGood.getName())) {
                     System.out.println("该商品只能购买一个");
                 } else {
-                    Player.getInstance().addMoney(-currentGood.price());
+                    Player.getInstance().addMoney(-currentGood.getPrice());
                     Lmoney.setText("余额:" + Player.getInstance().getMoney());
                     Player.getInstance().getBag().add(currentGood, 1);
 

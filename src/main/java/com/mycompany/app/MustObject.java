@@ -5,44 +5,37 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import javafx.scene.Cursor;
 import javafx.scene.input.MouseEvent;
 
-public class MustObject {
-    private String name;
-    private int money;
-    private String description;
+public class MustObject extends Item {
 
-    public MustObject(String name) {
-        this.name = name;
-        if (name == "狗绳") {
-            money = 50;
-            description = "文明养狗";
-        }
-        else if (name == "猫砂") {
-            money = 50;
-            description = "猫有三急";
-        }
-        else if (name == "宠物窝") {
-            money = 100;
-            description = "个小家伙都需要一个温暖的小窝";
-        }
-        else if (name == "鱼缸") {
-            money = 100;
-            description = "一方小小的海洋";
-        }
-        else {
-            money = 100;
-            description = "笼中鸟，懒得飞";
-        }
+    @Override
+    public String getImagePath() {
+        return getImagePathByName(name);
     }
 
-    public MustObject() {
-
+    public MustObject(String name, int price, String description) {
+        super(name, price, null, description, 0);
     }
+
+    public static List<MustObject> getDefaultMustObjects() {
+        List<MustObject> mustObjects = new ArrayList<>();
+        mustObjects.add(new MustObject("狗绳", 50, "文明养狗"));
+        mustObjects.add(new MustObject("猫砂", 50, "猫有三急"));
+        mustObjects.add(new MustObject("宠物窝", 100, "个小家伙都需要一个温暖的小窝"));
+        mustObjects.add(new MustObject("鱼缸", 100, "一方小小的海洋"));
+        mustObjects.add(new MustObject("鸟笼", 100, "笼中鸟，懒得飞")); // default fallback
+        return mustObjects;
+    }
+
     public Pane createUI() {
         StackPane toyPane = new StackPane();
-        toyPane.setPrefSize(100, 100); 
+        toyPane.setPrefSize(100, 100);
 
         try {
             String imagePath = getImagePathByName(name);
@@ -93,16 +86,4 @@ public class MustObject {
         // 这里可以添加实际游戏逻辑，如增加宠物心情值等
     }
 
-    // Getter方法
-    public String getName() {
-        return name;
-    }
-
-    public int getMoney() {
-        return money;
-    }
-
-    public String getDescription() {
-        return description;
-    }
 }
