@@ -11,11 +11,23 @@ public class HomeBuilder {
 
     private final SceneManager sceneManager;
     private Button birdButton;
+    private Button fishButton;
+
+    public Button getFishButton() {
+        return fishButton;
+    }
+
     private Pane weatherContainer;
+    private Pane birdContainer;
+
     Pane home;
 
     public Pane getHome() {
         return home;
+    }
+
+    public Pane getBirdContainer() {
+        return birdContainer;
     }
 
     public void setHome(Pane home) {
@@ -24,10 +36,6 @@ public class HomeBuilder {
 
     public Button getBirdButton() {
         return birdButton;
-    }
-
-    public void setBirdButton(Button birdButton) {
-        this.birdButton = birdButton;
     }
 
     public Pane getWeatherContainer() {
@@ -103,6 +111,14 @@ public class HomeBuilder {
 
             // 当买鸟时，才调用updateBird。
 
+        }
+
+        {
+            birdContainer = new Pane();
+            birdContainer.setPrefSize(sceneManager.getScene().getWidth(),
+                    sceneManager.getScene().getHeight());
+            birdContainer.setPickOnBounds(false);
+            home.getChildren().add(birdContainer);
         }
 
         return home;

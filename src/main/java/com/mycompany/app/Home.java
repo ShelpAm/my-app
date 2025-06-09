@@ -81,7 +81,7 @@ public class Home {
         }
     }
 
-    private void updateBird(Bird bird) {
+    public void updateBird(Bird bird) {
         var birdButton = homeBuilder.getBirdButton();
         var home = homeBuilder.getHome();
 
@@ -89,12 +89,10 @@ public class Home {
             return;
         }
 
-        if (birdButton == null) {
-            return;
+        if (birdButton != null) {
+            assert home == (Pane) birdButton.getParent();
+            home.getChildren().remove(birdButton);
         }
-
-        assert home == (Pane) birdButton.getParent();
-        home.getChildren().remove(birdButton);
 
         birdButton = new ClippedImageButton(bird.getImagePath(), null);
         birdButton.setScaleX(0.5);
@@ -102,6 +100,24 @@ public class Home {
         birdButton.setLayoutX(-220);
         birdButton.setLayoutY(480);
         home.getChildren().add(birdButton);
+        homeBuilder.getBirdContainer().toFront();
+    }
+
+    public void updateFish() {
+        var fishButton = homeBuilder.getBirdButton();
+        var home = homeBuilder.getHome();
+
+        if (Player.getInstance().getBag().content.containsKey("fishTank")) {
+
+        }
+
+        fishButton = new ClippedImageButton("/scenes/fishgang.png", null);
+        fishButton.setScaleX(0.5);
+        fishButton.setScaleY(0.5);
+        fishButton.setLayoutX(0);
+        fishButton.setLayoutY(480);
+        home.getChildren().add(fishButton);
+        homeBuilder.getBirdContainer().toFront();
     }
 
     public void updatePets() {
@@ -148,6 +164,20 @@ public class Home {
             petButtons.add(btn);
             home.getChildren().add(btn);
             ++i;
+        }
+    }
+
+    public void updateSceneItems() {
+        // 鸟笼
+        if (Player.getInstance().getBag().content.containsKey("birdCage")) {
+            Image image = new Image(getClass().getResource("/scenes/birdlong.png").toExternalForm());
+            BackgroundImage bgImage = new BackgroundImage(
+                    image,
+                    BackgroundRepeat.NO_REPEAT,
+                    BackgroundRepeat.NO_REPEAT,
+                    BackgroundPosition.CENTER,
+                    new BackgroundSize(BackgroundSize.AUTO, BackgroundSize.AUTO, false, false, true, false));
+            homeBuilder.getBirdContainer().setBackground(new Background(bgImage));
         }
     }
 

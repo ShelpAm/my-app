@@ -133,6 +133,9 @@ public abstract class Pet {
     }
 
     public String getImagePath() {
+        if (imagePath == null) {
+            System.out.println("[warning] You must forget to set image path for this pet (" + name + ")");
+        }
         return imagePath;
     }
 

@@ -57,8 +57,15 @@ public class App extends Application {
         stage.show();
         Game.init();
 
-        Home.getInstance().add(new Dog("fww", 1, 1, 1, 1, 1));
-        Home.getInstance().updatePets();
+        // 在购买时调用
+        // var dog = new Dog("fww", 1, 1, 1, 1, 1);
+        // var bi = new Bird("fww", 1, 1, 1, 1, 1);
+        // dog.setImagePath("/pets/dog-1.png");
+        // bi.setImagePath("/pets/bird-1.png");
+        // Home.getInstance().add(dog);
+        // Home.getInstance().updatePets();
+        // Home.getInstance().updateSceneItems();
+        // Home.getInstance().updateBird(bird);
     }
 
     public static void exit() {

@@ -2,6 +2,8 @@ package com.mycompany.app;
 
 import javafx.animation.*;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
@@ -25,8 +27,9 @@ public class HospitalBuilder {
     private static ImageView petImageView;
     private static Button sceneSwitchButton; // 新增场景切换按钮
     private final SceneManager sceneManager;
-    // private Button birdButton;
 
+    // private Button birdButton;
+    // Player player;
     public HospitalBuilder(SceneManager sm) {
         this.sceneManager = sm;
     }
@@ -41,7 +44,8 @@ public class HospitalBuilder {
         background.setFitHeight(792);
 
         // 创建金钱显示标签
-        moneyLabel = new Label("资金: $" + money);
+
+        moneyLabel = new Label("资金: $" + Player.getInstance().getMoney());
         moneyLabel.setFont(Font.font("Arial", 24));
         moneyLabel.setStyle("-fx-background-color: rgba(255, 255, 255, 0.85); " +
                 "-fx-padding: 8px 15px; " +
@@ -102,6 +106,7 @@ public class HospitalBuilder {
 
         // ================== 添加切换场景按钮 ==================
         // 在makeMainStreet方法中修改切换场景按钮的创建逻辑
+
         sceneSwitchButton = new Button("    ");
         sceneSwitchButton.setFont(Font.font("Arial", 50));
         sceneSwitchButton.setStyle(
@@ -156,14 +161,14 @@ public class HospitalBuilder {
 
     private static void startTreatment() {
         // 检查资金是否足够
-        if (money < 50) {
+        if (Player.getInstance().getMoney() < 50) {
             showInsufficientFunds();
             return;
         }
 
         isTreating = true;
-        money -= 50; // 扣除治疗费用
-        moneyLabel.setText("资金: $" + money);
+        Player.getInstance().addMoney(-50); // 扣除治疗费用
+        moneyLabel.setText("资金: $" + Player.getInstance().getMoney());
 
         // 显示宠物图片
         Image petImage = new Image(HospitalBuilder.class.getResourceAsStream("/pets/bird-1.png"));
