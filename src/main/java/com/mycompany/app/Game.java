@@ -32,10 +32,6 @@ public class Game {
                 }
 
                 for (Pet pet : homePets) {
-                    pet.setMood(pet.getMood() - pet.changeMood());
-                }
-
-                for (Pet pet : homePets) {
                     if (pet.getHealth() < 60) {
                         double x = pet.getHealth();
                         double p = x * x / 48 - 37.0 / 12 * x + 100;

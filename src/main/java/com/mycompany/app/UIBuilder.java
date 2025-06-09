@@ -1,7 +1,5 @@
 package com.mycompany.app;
 
-import java.util.ArrayList;
-
 import javafx.animation.Interpolator;
 import javafx.animation.ParallelTransition;
 import javafx.animation.RotateTransition;
@@ -9,17 +7,8 @@ import javafx.animation.TranslateTransition;
 import javafx.application.Platform;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
-import javafx.geometry.Point2D;
-import javafx.scene.Cursor;
-import javafx.scene.ImageCursor;
-import javafx.scene.control.*;
-import javafx.scene.effect.ColorAdjust;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
+import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Path;
-import javafx.scene.transform.Scale;
 import javafx.util.Duration;
 
 public class UIBuilder {
@@ -37,9 +26,66 @@ public class UIBuilder {
         ui.getStylesheets().add(getClass().getResource("/ui.css").toExternalForm());
 
         {
+            // // 1) The sliding drawer
+            // Pane drawer = new Pane();
+            // drawer.setId("drawer");
+            // drawer.applyCss();
+            //
+            // // Buttons inside drawer
+            // Button saveBtn = new Button("Save");
+            // saveBtn.setLayoutX(10);
+            // saveBtn.setLayoutY(10);
+            // Button exitBtn = new Button("Exit");
+            // exitBtn.setLayoutX(50);
+            // exitBtn.setLayoutY(10);
+            // exitBtn.setOnAction(e -> {
+            // // TODO: save Save
+            // Platform.exit();
+            // });
+            // drawer.getChildren().addAll(saveBtn, exitBtn);
+            //
+            // // 2) The tab button
+            // Button tab = new Button("≡");
+            // tab.setId("tab");
+            // tab.applyCss();
+            //
+            // // 3) Add both to root
+            // ui.getChildren().addAll(drawer, tab);
+            //
+            // // 4) Bind drawer & tab positions to scene size
+            // drawer.layoutXProperty().bind(sceneManager.getScene().widthProperty().subtract(10));
+            // drawer.layoutYProperty().bind(
+            // sceneManager.getScene().heightProperty().subtract(drawer.getPrefHeight() + 10
+            // + 20));
+            // tab.layoutXProperty().bind(
+            // sceneManager.getScene().widthProperty().subtract(tab.getPrefWidth() + 10 +
+            // 20));
+            // tab.layoutYProperty().bind(
+            // sceneManager.getScene().heightProperty().subtract(tab.getPrefHeight() + 10 +
+            // 20));
+            //
+            // // 5) Slide animation
+            // TranslateTransition slide = new TranslateTransition(Duration.millis(300),
+            // drawer);
+            // slide.setInterpolator(Interpolator.EASE_BOTH);
+            //
+            // tab.setOnAction(e -> {
+            // System.out.println("Hey!");
+            // if (!drawerOpen.get()) {
+            // slide.setFromX(0);
+            // slide.setToX(-(drawer.getPrefWidth() + 10));
+            // } else {
+            // slide.setFromX(-(drawer.getPrefWidth() + 10));
+            // slide.setToX(0);
+            // }
+            // slide.play();
+            // drawerOpen.set(!drawerOpen.get());
+            // });
+
             // 1) The sliding drawer
             Pane drawer = new Pane();
             drawer.setId("drawer");
+            drawer.setPrefSize(150, 100); // ✅ 必须设置，否则动画和定位计算会出错
             drawer.applyCss();
 
             // Buttons inside drawer
@@ -47,7 +93,7 @@ public class UIBuilder {
             saveBtn.setLayoutX(10);
             saveBtn.setLayoutY(10);
             Button exitBtn = new Button("Exit");
-            exitBtn.setLayoutX(50);
+            exitBtn.setLayoutX(60);
             exitBtn.setLayoutY(10);
             exitBtn.setOnAction(e -> {
                 // TODO: save Save
@@ -59,30 +105,28 @@ public class UIBuilder {
             Button tab = new Button("≡");
             tab.setId("tab");
             tab.applyCss();
+            tab.setPrefSize(30, 30); // ✅ 可设定一下大小
 
             // 3) Add both to root
             ui.getChildren().addAll(drawer, tab);
 
-            // 4) Bind drawer & tab positions to scene size
-            drawer.layoutXProperty().bind(sceneManager.getScene().widthProperty().subtract(10));
-            drawer.layoutYProperty().bind(
-                    sceneManager.getScene().heightProperty().subtract(drawer.getPrefHeight() + 10 + 20));
-            tab.layoutXProperty().bind(
-                    sceneManager.getScene().widthProperty().subtract(tab.getPrefWidth() + 10 + 20));
-            tab.layoutYProperty().bind(
-                    sceneManager.getScene().heightProperty().subtract(tab.getPrefHeight() + 10 + 20));
+            // 4) Bind positions (向内偏移一点，不太靠角落)
+            drawer.layoutXProperty().bind(sceneManager.getScene().widthProperty().subtract(drawer.getPrefWidth() + 20));
+            drawer.layoutYProperty()
+                    .bind(sceneManager.getScene().heightProperty().subtract(drawer.getPrefHeight() + 60));
+            tab.layoutXProperty().bind(sceneManager.getScene().widthProperty().subtract(tab.getPrefWidth() + 20));
+            tab.layoutYProperty().bind(sceneManager.getScene().heightProperty().subtract(tab.getPrefHeight() + 20));
 
             // 5) Slide animation
             TranslateTransition slide = new TranslateTransition(Duration.millis(300), drawer);
             slide.setInterpolator(Interpolator.EASE_BOTH);
 
             tab.setOnAction(e -> {
-                System.out.println("Hey!");
                 if (!drawerOpen.get()) {
                     slide.setFromX(0);
-                    slide.setToX(-(drawer.getPrefWidth() + 10));
+                    slide.setToX(-(drawer.getPrefWidth()));
                 } else {
-                    slide.setFromX(-(drawer.getPrefWidth() + 10));
+                    slide.setFromX(-(drawer.getPrefWidth()));
                     slide.setToX(0);
                 }
                 slide.play();

@@ -2,7 +2,6 @@ package com.mycompany.app;
 
 import javafx.util.Duration;
 
-import java.text.BreakIterator;
 import java.util.ArrayList;
 
 import javafx.animation.KeyFrame;
@@ -108,6 +107,9 @@ public class HomeBuilder {
     }
 
     private void updateWeather(WeatherType type) {
+        for (Pet pet : Home.getInstance().getPets()) {
+            pet.setMood(pet.getMood() - pet.changeMood(type));
+        }
 
     }
 
