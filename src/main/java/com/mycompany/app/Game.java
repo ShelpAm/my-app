@@ -9,7 +9,7 @@ public class Game {
     Timer timer = new Timer();
     int day = 0;
     List<Pet> adoptedPets = new ArrayList<>();
-    final double timeRate = 10000;
+    final double timeRate = 200;
 
     public Game(String saveFile) {
         // Process saving file
