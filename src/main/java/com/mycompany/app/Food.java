@@ -70,20 +70,26 @@ class Food {
     private String getImagePathByName(String foodName) {
         // 这里可以根据实际项目结构调整图片路径
         switch(foodName) {
-            case "飞盘":
-                return "/1.png";
-            case "逗猫棒":
-                return "/1.png";
-            case "跑轮":
-                return "/1.png";
+            case "干草":
+                return "/干草.png";
+            case "狗粮":
+                return "/狗粮.png";
+            case "猫条":
+                return "/猫条.png";
+            case "猫粮":
+                return "/猫粮.png";
+            case "水果":
+                return "/水果.png";
+            case "饲料":
+                return "/饲料.png";
             // 添加更多玩具类型...
             default:
-                return "/1.png";
+                return "/水果.png";
         }
     }
         // 处理玩具点击事件
     private void handleToyClick(MouseEvent event) {
-        System.out.println("使用了玩具: " + name);
+        System.out.println("吃了: " + name);
         System.out.println("描述: " + description);
         System.out.println("心情值增加: " + moodAdd);
         

@@ -54,16 +54,18 @@ public class Toy {
     // 根据玩具名称获取图片路径
     private String getImagePathByName(String toyName) {
         // 这里可以根据实际项目结构调整图片路径
-        switch (toyName.toLowerCase()) {
+        switch (toyName) {
             case "飞盘":
-                return "/1.png";
+                return "/飞盘.png";
             case "逗猫棒":
-                return "/1.png";
+                return "/逗猫棒.png";
             case "跑轮":
-                return "/1.png";
+                return "/跑轮.png";
+            case "狗绳":
+                return "/狗绳.png";
             // 添加更多玩具类型...
             default:
-                return "/1.png";
+                return "/飞盘.png";
         }
     }
 
