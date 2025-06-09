@@ -27,7 +27,7 @@ public abstract class Pet {
         this.adoptionRequirements = adoptionRequirements;
     }
 
-    public abstract int changeMood();
+    public abstract int changeMood(WeatherType type);
 
     public void setDie() {
         this.hasDie = true;

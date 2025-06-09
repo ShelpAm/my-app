@@ -20,13 +20,16 @@ public class Fish extends Pet {
     public void eat(Food food) {
 
     }
-    public int changeMood() {
-        return -10;
-    }
-
-    public int live() {
-        if (age > 10) return 0;
-        else return 1;
+    public int changeMood(WeatherType type) {
+        if (type.name() == "CLEAR") { // sunny
+            return -10;
+        }
+        else if (type.name() == "RAIN") { // rain
+            return -10;
+        }
+        else { // snow 
+            return -10;
+        }
     }
     
     public void interact() {

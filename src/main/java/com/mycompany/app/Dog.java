@@ -25,16 +25,16 @@ public class Dog extends Pet {
 
     }
 
-    public int changeMood() {
-        Random rd = new Random(5);
-        int t = rd.nextInt();
-        if (t == 0 || t == 1) {
+    public int changeMood(WeatherType type) {
+        if (type.name() == "CLEAR") { // sunny
             return 10;
         }
-        else if (t == 2 || t == 3) {
+        else if (type.name() == "RAIN") { // rain
             return -10;
         }
-        else return 0;
+        else { // snow 
+            return 0;
+        }
     }
 
     public void interact() {
